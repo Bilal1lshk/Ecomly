@@ -3,7 +3,6 @@ import crypto from "crypto";
 import { connectDB } from "@/lib/database/db";
 import { User } from "@/lib/models/user";
 import { transporter } from "@/lib/email/nodemailer";
-
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json();
@@ -22,6 +21,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json({
         message: "If an account exists, a verification code has been sent.",
+        success: true,
       });
     }
 
@@ -68,7 +68,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({
-      message: "If an account exists, a verification code has been sent.",
+      message: "Verification code has been sent.",
+      success: true,
     });
   } catch (error) {
     console.error("Forgot password error:", error);
