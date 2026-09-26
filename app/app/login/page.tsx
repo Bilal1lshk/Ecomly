@@ -49,9 +49,36 @@ export default function LoginPage() {
           className="aurora-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/auth-bg.png')" }}
         />
+<<<<<<< HEAD
         {/* colour washes */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B1020]/85 via-[#1a1145]/55 to-[#070B18]/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#070B18] via-transparent to-[#070B18]/70" />
+=======
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="border border-border rounded-lg px-4 py-2 text-sm text-foreground bg-surface outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground"
+        />
+<div className="text-right">
+  <a
+    href="/forgot-password"
+    className="text-sm text-primary hover:text-primary-hover"
+  >
+    Forgot password?
+  </a>
+</div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-primary text-white rounded-lg py-2 text-sm font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+>>>>>>> 138eb0abdfddaf59ceb9123e90911d1585bf0c2a
 
         {/* animated aurora blobs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
