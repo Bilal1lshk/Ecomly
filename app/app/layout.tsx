@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import Chatbot from "./components/chatbot";
+import ConditionalChatbot from "./components/conditional-chatbot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   description: "E-commerce workspace",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
@@ -26,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <SessionProvider>{children}</SessionProvider>
+        <ConditionalChatbot />
       </body>
     </html>
   );
