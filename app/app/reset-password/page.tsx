@@ -41,6 +41,7 @@ export default function ResetPasswordPage() {
       });
 
       const data = await res.json();
+      console.log("Reset password response:", data);
 
       if (!res.ok) {
         setError(data.error || "Something went wrong");

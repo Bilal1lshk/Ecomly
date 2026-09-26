@@ -1,8 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function ForgotPasswordPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -26,12 +29,13 @@ export default function ForgotPasswordPage() {
 
       const data = await res.json();
 
-      if (!res.ok) {
+      if (!res.ok || !data.success) {
         setError(data.error || "Something went wrong");
         return;
       }
 
       setMessage(data.message);
+      router.push("/reset-password");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
