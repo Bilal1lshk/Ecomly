@@ -25,11 +25,11 @@ export default function SignupPage() {
     const data = await res.json();
     setLoading(false);
 
-    if (!res.ok) {
-      setError(data.error || "Something went wrong");
-    } else {
-      router.push("/login");
-    }
+if (!res.ok) {
+  setError(data.error || "Something went wrong");
+} else {
+  router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+}
   }
 
   return (
