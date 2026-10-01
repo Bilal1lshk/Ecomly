@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@ai-sdk/groq": "^4.0.48",
+<<<<<<< HEAD
     "@ai-sdk/react": "^4.0.119",
     "@prisma/client": "^7.10.0",
     "ai": "^7.0.116",
+=======
+    "@ai-sdk/react": "^4.0.125",
+    "ai": "^7.0.122",
+>>>>>>> a25a6b50c4574f6c79eb6460fec6176c8cb29a8d
     "bcryptjs": "^3.0.3",
     "ebay-oauth-nodejs-client": "^1.2.2",
     "mongoose": "^9.10.2",
