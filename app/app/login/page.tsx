@@ -41,59 +41,33 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen w-full overflow-hidden bg-[#070B18] text-[#EEF1FB]">
+    <div className="relative flex min-h-screen w-full overflow-hidden bg-background text-foreground">
       {/* ============ LEFT — immersive brand panel ============ */}
-      <aside className="relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 lg:flex">
-        {/* background image */}
+      <aside className="relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 text-white lg:flex">
         <div
           className="aurora-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/auth-bg.png')" }}
         />
-<<<<<<< HEAD
+        <div className="absolute inset-0 bg-gradient-to-br from-[#7C3220]/80 via-[#A9472E]/60 to-[#C75B3A]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#5E2417]/70 via-transparent to-[#7C3220]/40" />
+
         {/* colour washes */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B1020]/85 via-[#1a1145]/55 to-[#070B18]/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#070B18] via-transparent to-[#070B18]/70" />
-=======
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="border border-border rounded-lg px-4 py-2 text-sm text-foreground bg-surface outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground"
-        />
-<div className="text-right">
-  <a
-    href="/forgot-password"
-    className="text-sm text-primary hover:text-primary-hover"
-  >
-    Forgot password?
-  </a>
-</div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-primary text-white rounded-lg py-2 text-sm font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
->>>>>>> 138eb0abdfddaf59ceb9123e90911d1585bf0c2a
 
         {/* animated aurora blobs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="blob blob-a absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#7C3AED]/40 blur-[90px]" />
-          <div className="blob blob-b absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#22D3EE]/30 blur-[100px]" />
-          <div className="blob blob-c absolute left-1/3 top-1/2 h-64 w-64 rounded-full bg-[#DB2777]/30 blur-[80px]" />
+          <div className="blob blob-a absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#FFD9C0]/30 blur-[90px]" />
+          <div className="blob blob-b absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#B8863B]/30 blur-[100px]" />
+          <div className="blob blob-c absolute left-1/3 top-1/2 h-64 w-64 rounded-full bg-[#FFFFFF]/20 blur-[80px]" />
         </div>
 
-        {/* grid + floating particles */}
-        <div className="pointer-events-none absolute inset-0 opacity-[0.15] [background-image:linear-gradient(rgba(255,255,255,.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.5)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(circle_at_50%_40%,black,transparent_75%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.6)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(circle_at_50%_40%,black,transparent_75%)]" />
         <div className="pointer-events-none absolute inset-0">
           {[...Array(14)].map((_, i) => (
             <span
               key={i}
-              className="spark absolute h-1 w-1 rounded-full bg-white/70"
+              className="spark absolute h-1 w-1 rounded-full bg-white/80"
               style={{
                 left: `${(i * 7.3 + 6) % 96}%`,
                 top: `${(i * 13.7 + 10) % 92}%`,
@@ -104,35 +78,28 @@ export default function LoginPage() {
           ))}
         </div>
 
-        {/* logo */}
         <div className="rise relative z-10 flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/25 backdrop-blur-md">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur-md">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 0 0 5.414 17H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM9 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                stroke="white"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
               />
             </svg>
           </div>
           <span className="text-xl font-bold tracking-tight">Ecomly</span>
         </div>
 
-        {/* headline */}
         <div className="relative z-10 max-w-md">
-          <span className="rise inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium tracking-wide text-white/80 backdrop-blur-md">
-            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#22D3EE]" />
+          <span className="rise inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-[11px] font-medium tracking-wide text-white/90 backdrop-blur-md">
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#FFD9C0]" />
             ALL-IN-ONE COMMERCE OS
           </span>
           <h1 className="rise mt-6 text-[2.75rem] font-bold leading-[1.1] tracking-tight">
             Run your entire store from{" "}
-            <span className="gradient-text bg-clip-text text-transparent">
-              one workspace.
-            </span>
+            <span className="gradient-text bg-clip-text text-transparent">one workspace.</span>
           </h1>
-          <p className="rise mt-5 text-[15px] leading-relaxed text-white/70">
+          <p className="rise mt-5 text-[15px] leading-relaxed text-white/80">
             Research products, manage inventory and track orders — without ever
             switching tabs again.
           </p>
@@ -141,18 +108,12 @@ export default function LoginPage() {
             {FEATURES.map((f, i) => (
               <li
                 key={f}
-                className="rise glass-row flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white/85 backdrop-blur-md"
+                className="rise glass-row flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white/90 backdrop-blur-md"
                 style={{ animationDelay: `${0.35 + i * 0.12}s` }}
               >
-                <span className="check flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] ring-1 ring-white/30">
+                <span className="check flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/90 ring-1 ring-white/40">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M20 6 9 17l-5-5"
-                      stroke="white"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <path d="M20 6 9 17l-5-5" stroke="#C75B3A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
                 {f}
@@ -161,14 +122,13 @@ export default function LoginPage() {
           </ul>
         </div>
 
-        {/* footer */}
-        <div className="rise relative z-10 flex items-center gap-4 text-xs text-white/50">
+        <div className="rise relative z-10 flex items-center gap-4 text-xs text-white/70">
           <div className="flex -space-x-2">
-            {["#7C3AED", "#22D3EE", "#DB2777", "#4F46E5"].map((c) => (
+            {["#FFD9C0", "#B8863B", "#FFFFFF", "#E8A87C"].map((c) => (
               <span
                 key={c}
-                className="h-7 w-7 rounded-full ring-2 ring-[#0B1020]"
-                style={{ background: `linear-gradient(135deg, ${c}, #ffffff55)` }}
+                className="h-7 w-7 rounded-full ring-2 ring-[#7C3220]"
+                style={{ background: `linear-gradient(135deg, ${c}, #ffffff66)` }}
               />
             ))}
           </div>
@@ -176,11 +136,10 @@ export default function LoginPage() {
         </div>
       </aside>
 
-      {/* ============ RIGHT — glass form ============ */}
+      {/* ============ RIGHT — warm form card ============ */}
       <main className="relative flex w-full items-center justify-center overflow-hidden px-6 py-12 lg:w-1/2">
-        {/* ambient glows */}
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#7C3AED]/25 blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-[#22D3EE]/15 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/10 blur-[110px]" />
+        <div className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-warning/10 blur-[110px]" />
 
         <div
           onMouseMove={(e) => {
@@ -192,42 +151,37 @@ export default function LoginPage() {
           }}
           className="rise relative w-full max-w-[26rem]"
         >
-          {/* cursor spotlight */}
           <div
-            className="pointer-events-none absolute -inset-px rounded-[26px] opacity-70 transition-opacity"
+            className="pointer-events-none absolute -inset-px rounded-[26px]"
             style={{
-              background: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(124,58,237,.18), transparent 60%)`,
+              background: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(199,91,58,.10), transparent 60%)`,
             }}
           />
 
-          <div className="relative rounded-[26px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_30px_80px_-20px_rgba(0,0,0,.7)] backdrop-blur-2xl sm:p-10">
-            {/* mobile logo */}
+          <div className="relative rounded-[26px] border border-border bg-surface p-8 shadow-[0_24px_70px_-24px_rgba(124,50,32,.28)] sm:p-10">
             <div className="mb-8 flex items-center gap-2.5 lg:hidden">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] ring-1 ring-white/25">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 0 0 5.414 17H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM9 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                    stroke="white"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    stroke="var(--primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
                   />
                 </svg>
               </div>
-              <span className="text-xl font-bold tracking-tight">Ecomly</span>
+              <span className="text-xl font-bold tracking-tight text-foreground">Ecomly</span>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-[1.75rem] font-semibold tracking-tight">
+              <h2 className="text-[1.75rem] font-semibold tracking-tight text-foreground">
                 Welcome back
               </h2>
-              <p className="mt-2 text-sm text-white/55">
+              <p className="mt-2 text-sm text-muted-foreground">
                 Log in to continue to your workspace.
               </p>
             </div>
 
             {error && (
-              <div className="shake mb-5 flex items-center gap-2 rounded-xl border border-[#FB7185]/30 bg-[#FB7185]/10 px-3.5 py-2.5 text-sm text-[#FDA4AF]">
+              <div className="shake mb-5 flex items-center gap-2 rounded-xl border border-danger/20 bg-danger-bg px-3.5 py-2.5 text-sm text-danger">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M12 8v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -246,22 +200,18 @@ export default function LoginPage() {
                   </svg>
                 </span>
                 <input
-                  id="email"
-                  type="email"
-                  placeholder="you@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
+                  id="email" type="email" placeholder="you@company.com"
+                  value={email} onChange={(e) => setEmail(e.target.value)} required
                   className="input pl-10"
                 />
               </Field>
 
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="text-xs font-medium text-white/60">
+                  <label htmlFor="password" className="text-xs font-medium text-muted-foreground">
                     Password
                   </label>
-                  <a href="#" className="text-xs font-medium text-[#A78BFA] transition-colors hover:text-[#22D3EE]">
+                  <a href="#" className="text-xs font-medium text-primary transition-colors hover:text-primary-hover">
                     Forgot password?
                   </a>
                 </div>
@@ -286,7 +236,7 @@ export default function LoginPage() {
                     onClick={() => setShowPassword((s) => !s)}
                     tabIndex={-1}
                     aria-label={showPassword ? "Hide password" : "Show password"}
-                    className="absolute inset-y-0 right-3 flex items-center text-white/40 transition-colors hover:text-white/80"
+                    className="absolute inset-y-0 right-3 flex items-center text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {showPassword ? (
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -317,9 +267,9 @@ export default function LoginPage() {
               </button>
 
               <div className="my-1 flex items-center gap-3">
-                <div className="h-px flex-1 bg-white/10" />
-                <span className="text-xs text-white/40">or continue with</span>
-                <div className="h-px flex-1 bg-white/10" />
+                <div className="h-px flex-1 bg-border" />
+                <span className="text-xs text-muted-foreground">or continue with</span>
+                <div className="h-px flex-1 bg-border" />
               </div>
 
               <button
@@ -345,9 +295,9 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <p className="mt-8 text-center text-sm text-white/55">
+            <p className="mt-8 text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{" "}
-              <a href="/signup" className="font-semibold text-[#A78BFA] transition-colors hover:text-[#22D3EE]">
+              <a href="/signup" className="font-semibold text-primary transition-colors hover:text-primary-hover">
                 Sign up
               </a>
             </p>
@@ -360,8 +310,6 @@ export default function LoginPage() {
   );
 }
 
-/* ---------- small helpers (kept in-file so nothing else changes) ---------- */
-
 function Field({
   label,
   htmlFor,
@@ -373,7 +321,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-xs font-medium text-white/60">
+      <label htmlFor={htmlFor} className="text-xs font-medium text-muted-foreground">
         {label}
       </label>
       <div className="group relative">{children}</div>
@@ -393,22 +341,18 @@ function Spinner({ dark }: { dark?: boolean }) {
 function Styles() {
   return (
     <style jsx global>{`
-      /* --- entrance --- */
       @keyframes ecomlyRise {
         from { opacity: 0; transform: translateY(18px); }
         to { opacity: 1; transform: translateY(0); }
       }
       .rise { animation: ecomlyRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
-      aside .rise:nth-of-type(1) { animation-delay: 0.05s; }
 
-      /* --- aurora background slow zoom --- */
       @keyframes ecomlyZoom {
         0%, 100% { transform: scale(1.06) translate3d(0,0,0); }
         50% { transform: scale(1.16) translate3d(-1.5%, -1.5%, 0); }
       }
       .aurora-zoom { animation: ecomlyZoom 26s ease-in-out infinite; }
 
-      /* --- blobs --- */
       @keyframes ecomlyBlob {
         0%, 100% { transform: translate(0,0) scale(1); }
         33% { transform: translate(30px,-40px) scale(1.12); }
@@ -418,7 +362,6 @@ function Styles() {
       .blob-b { animation-duration: 20s; animation-delay: 1.5s; }
       .blob-c { animation-duration: 13s; animation-delay: 0.8s; }
 
-      /* --- floating sparks --- */
       @keyframes ecomlySpark {
         0% { opacity: 0; transform: translateY(0) scale(0.6); }
         20% { opacity: 1; }
@@ -426,36 +369,32 @@ function Styles() {
       }
       .spark { animation: ecomlySpark 7s linear infinite; }
 
-      /* --- pulsing badge dot --- */
       @keyframes ecomlyPulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,.6); }
-        70% { box-shadow: 0 0 0 7px rgba(34,211,238,0); }
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255,217,192,.7); }
+        70% { box-shadow: 0 0 0 7px rgba(255,217,192,0); }
       }
       .pulse-dot { animation: ecomlyPulse 2s infinite; }
 
-      /* --- animated gradient headline --- */
       @keyframes ecomlyGradient {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
       }
       .gradient-text {
-        background-image: linear-gradient(120deg,#A78BFA,#22D3EE,#DB2777,#A78BFA);
+        background-image: linear-gradient(120deg,#FFF3EC,#FFC9A8,#B8863B,#FFF3EC);
         background-size: 250% 250%;
         animation: ecomlyGradient 7s ease infinite;
       }
 
-      /* --- feature row hover lift --- */
       .glass-row { transition: transform .3s ease, background .3s ease, border-color .3s ease; }
       .glass-row:hover {
         transform: translateX(6px);
-        background: rgba(255,255,255,.11);
-        border-color: rgba(255,255,255,.25);
+        background: rgba(255,255,255,.18);
+        border-color: rgba(255,255,255,.4);
       }
       @keyframes ecomlyPop { from { transform: scale(.4); opacity:0 } to { transform: scale(1); opacity:1 } }
       .check { animation: ecomlyPop .5s cubic-bezier(.34,1.56,.64,1) both; }
 
-      /* --- error shake --- */
       @keyframes ecomlyShake {
         0%,100% { transform: translateX(0); }
         20% { transform: translateX(-5px); }
@@ -465,35 +404,32 @@ function Styles() {
       }
       .shake { animation: ecomlyShake .45s ease-in-out; }
 
-      /* --- inputs --- */
       .input {
         width: 100%;
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.04);
+        border: 1px solid var(--border);
+        background: var(--surface);
         padding: 0.7rem 0.9rem;
         font-size: 0.875rem;
-        color: #EEF1FB;
+        color: var(--foreground);
         outline: none;
         transition: border-color .25s, box-shadow .25s, background .25s;
       }
-      .input::placeholder { color: rgba(255,255,255,.32); }
+      .input::placeholder { color: rgba(107,104,98,.55); }
       .input:focus {
-        border-color: rgba(124,58,237,.9);
-        background: rgba(124,58,237,.07);
-        box-shadow: 0 0 0 4px rgba(124,58,237,.16);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(199,91,58,.12);
       }
       .icon {
         pointer-events: none;
         position: absolute;
         top: 0; bottom: 0; left: 0.9rem;
         display: flex; align-items: center;
-        color: rgba(255,255,255,.4);
+        color: var(--muted-foreground);
         transition: color .25s;
       }
-      .group:focus-within .icon { color: #A78BFA; }
+      .group:focus-within .icon { color: var(--primary); }
 
-      /* --- primary button --- */
       .btn-primary {
         position: relative;
         overflow: hidden;
@@ -501,14 +437,14 @@ function Styles() {
         border-radius: 12px;
         padding: 0.75rem 1rem;
         font-size: 0.875rem; font-weight: 600; color: #fff;
-        background-image: linear-gradient(120deg,#7C3AED,#4F46E5,#22D3EE,#7C3AED);
+        background-image: linear-gradient(120deg,#C75B3A,#A9472E,#B8863B,#C75B3A);
         background-size: 300% 100%;
-        box-shadow: 0 10px 30px -10px rgba(124,58,237,.8);
+        box-shadow: 0 10px 28px -10px rgba(199,91,58,.6);
         transition: background-position .6s ease, transform .15s ease, box-shadow .3s;
       }
       .btn-primary:hover:not(:disabled) {
         background-position: 100% 0;
-        box-shadow: 0 14px 40px -10px rgba(34,211,238,.7);
+        box-shadow: 0 14px 36px -10px rgba(184,134,59,.55);
       }
       .btn-primary:active:not(:disabled) { transform: scale(.98); }
       .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
@@ -525,19 +461,18 @@ function Styles() {
         55%,100% { left: 130%; }
       }
 
-      /* --- ghost (google) button --- */
       .btn-ghost {
         display: flex; align-items: center; justify-content: center; gap: .5rem;
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,.14);
-        background: rgba(255,255,255,.05);
+        border: 1px solid var(--border);
+        background: var(--surface);
         padding: 0.72rem 1rem;
-        font-size: 0.875rem; font-weight: 500; color: #EEF1FB;
+        font-size: 0.875rem; font-weight: 500; color: var(--foreground);
         transition: background .25s, border-color .25s, transform .15s;
       }
       .btn-ghost:hover:not(:disabled) {
-        background: rgba(255,255,255,.1);
-        border-color: rgba(255,255,255,.3);
+        background: var(--surface-secondary);
+        border-color: rgba(199,91,58,.35);
       }
       .btn-ghost:active:not(:disabled) { transform: scale(.98); }
       .btn-ghost:disabled { opacity: .6; cursor: not-allowed; }

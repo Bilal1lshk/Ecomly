@@ -43,20 +43,20 @@ if (!res.ok) {
   }
 
   return (
-    <div className="relative flex min-h-screen w-full overflow-hidden bg-[#070B18] text-[#EEF1FB]">
+    <div className="relative flex min-h-screen w-full overflow-hidden bg-background text-foreground">
       {/* ============ LEFT — immersive brand panel ============ */}
-      <aside className="relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 lg:flex">
+      <aside className="relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 text-white lg:flex">
         <div
           className="aurora-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/auth-bg.png')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-bl from-[#0B1020]/85 via-[#131a4a]/55 to-[#070B18]/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070B18] via-transparent to-[#070B18]/70" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-[#7C3220]/85 via-[#A9472E]/60 to-[#B8863B]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#5E2417] via-transparent to-[#7C3220]/60" />
 
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="blob blob-a absolute -right-24 top-10 h-80 w-80 rounded-full bg-[#22D3EE]/35 blur-[90px]" />
-          <div className="blob blob-b absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#7C3AED]/40 blur-[100px]" />
-          <div className="blob blob-c absolute left-1/2 top-1/3 h-64 w-64 rounded-full bg-[#DB2777]/30 blur-[80px]" />
+          <div className="blob blob-a absolute -right-24 top-10 h-80 w-80 rounded-full bg-[#FFD9C0]/30 blur-[90px]" />
+          <div className="blob blob-b absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#C75B3A]/40 blur-[100px]" />
+          <div className="blob blob-c absolute left-1/2 top-1/3 h-64 w-64 rounded-full bg-[#B8863B]/35 blur-[80px]" />
         </div>
 
         <div className="pointer-events-none absolute inset-0 opacity-[0.15] [background-image:linear-gradient(rgba(255,255,255,.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.5)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(circle_at_50%_40%,black,transparent_75%)]" />
@@ -76,7 +76,7 @@ if (!res.ok) {
         </div>
 
         <div className="rise relative z-10 flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/25 backdrop-blur-md">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur-md">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 0 0 5.414 17H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM9 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
@@ -88,15 +88,15 @@ if (!res.ok) {
         </div>
 
         <div className="relative z-10 max-w-md">
-          <span className="rise inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium tracking-wide text-white/80 backdrop-blur-md">
-            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#22D3EE]" />
+          <span className="rise inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[11px] font-medium tracking-wide text-white/85 backdrop-blur-md">
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#FFD9C0]" />
             START FREE — NO CARD NEEDED
           </span>
           <h1 className="rise mt-6 text-[2.75rem] font-bold leading-[1.1] tracking-tight">
             Set up your workspace in{" "}
             <span className="gradient-text bg-clip-text text-transparent">minutes.</span>
           </h1>
-          <p className="rise mt-5 text-[15px] leading-relaxed text-white/70">
+          <p className="rise mt-5 text-[15px] leading-relaxed text-white/75">
             Join sellers who ditched the spreadsheet chaos for one connected
             operations hub.
           </p>
@@ -105,27 +105,27 @@ if (!res.ok) {
             {STEPS.map(([title, desc], i) => (
               <li
                 key={title}
-                className="rise glass-row flex items-start gap-3.5 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md"
+                className="rise glass-row flex items-start gap-3.5 rounded-xl border border-white/15 bg-white/[0.12] px-4 py-3 backdrop-blur-md"
                 style={{ animationDelay: `${0.35 + i * 0.12}s` }}
               >
-                <span className="step-num flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] text-xs font-bold text-white ring-1 ring-white/30">
+                <span className="step-num flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#C75B3A] to-[#B8863B] text-xs font-bold text-white ring-1 ring-white/30">
                   {i + 1}
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-white">{title}</p>
-                  <p className="text-xs text-white/60">{desc}</p>
+                  <p className="text-xs text-white/70">{desc}</p>
                 </div>
               </li>
             ))}
           </ol>
         </div>
 
-        <div className="rise relative z-10 flex items-center gap-4 text-xs text-white/50">
+        <div className="rise relative z-10 flex items-center gap-4 text-xs text-white/60">
           <div className="flex -space-x-2">
-            {["#22D3EE", "#7C3AED", "#DB2777", "#4F46E5"].map((c) => (
+            {["#B8863B", "#C75B3A", "#FFD9C0", "#A9472E"].map((c) => (
               <span
                 key={c}
-                className="h-7 w-7 rounded-full ring-2 ring-[#0B1020]"
+                className="h-7 w-7 rounded-full ring-2 ring-[#7C3220]"
                 style={{ background: `linear-gradient(135deg, ${c}, #ffffff55)` }}
               />
             ))}
@@ -134,10 +134,10 @@ if (!res.ok) {
         </div>
       </aside>
 
-      {/* ============ RIGHT — glass form ============ */}
+      {/* ============ RIGHT — warm form card ============ */}
       <main className="relative flex w-full items-center justify-center overflow-hidden px-6 py-12 lg:w-1/2">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#22D3EE]/20 blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-[#7C3AED]/25 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#C75B3A]/15 blur-[120px]" />
+        <div className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-[#B8863B]/15 blur-[120px]" />
 
         <div
           onMouseMove={(e) => {
@@ -150,19 +150,19 @@ if (!res.ok) {
           className="rise relative w-full max-w-[26rem]"
         >
           <div
-            className="pointer-events-none absolute -inset-px rounded-[26px] opacity-70"
+            className="pointer-events-none absolute -inset-px rounded-[26px] opacity-80"
             style={{
-              background: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(34,211,238,.16), transparent 60%)`,
+              background: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(199,91,58,.10), transparent 60%)`,
             }}
           />
 
-          <div className="relative rounded-[26px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_30px_80px_-20px_rgba(0,0,0,.7)] backdrop-blur-2xl sm:p-10">
+          <div className="relative rounded-[26px] border border-border bg-surface p-8 shadow-[0_30px_80px_-24px_rgba(124,50,32,.25)] backdrop-blur-xl sm:p-10">
             <div className="mb-8 flex items-center gap-2.5 lg:hidden">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] ring-1 ring-white/25">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 0 0 5.414 17H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM9 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                    stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+                    stroke="var(--primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
                   />
                 </svg>
               </div>
@@ -171,13 +171,13 @@ if (!res.ok) {
 
             <div className="mb-8">
               <h2 className="text-[1.75rem] font-semibold tracking-tight">Create your account</h2>
-              <p className="mt-2 text-sm text-white/55">
+              <p className="mt-2 text-sm text-muted-foreground">
                 Start your free workspace — no credit card needed.
               </p>
             </div>
 
             {error && (
-              <div className="shake mb-5 flex items-center gap-2 rounded-xl border border-[#FB7185]/30 bg-[#FB7185]/10 px-3.5 py-2.5 text-sm text-[#FDA4AF]">
+              <div className="shake mb-5 flex items-center gap-2 rounded-xl border border-danger/25 bg-danger-bg px-3.5 py-2.5 text-sm text-danger">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M12 8v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -217,7 +217,7 @@ if (!res.ok) {
               </Field>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="password" className="text-xs font-medium text-white/60">Password</label>
+                <label htmlFor="password" className="text-xs font-medium text-muted-foreground">Password</label>
                 <div className="group relative">
                   <span className="icon">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -240,7 +240,7 @@ if (!res.ok) {
                     onClick={() => setShowPassword((s) => !s)}
                     tabIndex={-1}
                     aria-label={showPassword ? "Hide password" : "Show password"}
-                    className="absolute inset-y-0 right-3 flex items-center text-white/40 transition-colors hover:text-white/80"
+                    className="absolute inset-y-0 right-3 flex items-center text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {showPassword ? (
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -269,20 +269,20 @@ if (!res.ok) {
                             background:
                               i < passwordScore
                                 ? passwordScore <= 1
-                                  ? "#FB7185"
+                                  ? "var(--danger)"
                                   : passwordScore === 2
-                                  ? "#FBBF24"
-                                  : "#34D399"
-                                : "rgba(255,255,255,.12)",
+                                  ? "var(--warning)"
+                                  : "var(--success)"
+                                : "var(--border)",
                             boxShadow:
                               i < passwordScore
-                                ? `0 0 8px ${passwordScore <= 1 ? "#FB718588" : passwordScore === 2 ? "#FBBF2488" : "#34D39988"}`
+                                ? `0 0 8px ${passwordScore <= 1 ? "#B65A5266" : passwordScore === 2 ? "#B8863B66" : "#527A5A66"}`
                                 : "none",
                           }}
                         />
                       ))}
                     </div>
-                    <span className="w-12 text-right text-[11px] font-medium text-white/55">
+                    <span className="w-12 text-right text-[11px] font-medium text-muted-foreground">
                       {["Weak", "Weak", "Okay", "Strong"][passwordScore - 1] ?? "Weak"}
                     </span>
                   </div>
@@ -301,9 +301,9 @@ if (!res.ok) {
               </button>
             </form>
 
-            <p className="mt-8 text-center text-sm text-white/55">
+            <p className="mt-8 text-center text-sm text-muted-foreground">
               Already have an account?{" "}
-              <a href="/login" className="font-semibold text-[#A78BFA] transition-colors hover:text-[#22D3EE]">
+              <a href="/login" className="font-semibold text-primary transition-colors hover:text-primary-hover">
                 Log in
               </a>
             </p>
@@ -326,8 +326,6 @@ function getPasswordScore(password: string): number {
   return Math.min(score, 4);
 }
 
-/* ---------- small helpers (kept in-file so nothing else changes) ---------- */
-
 function Field({
   label,
   htmlFor,
@@ -339,7 +337,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-xs font-medium text-white/60">
+      <label htmlFor={htmlFor} className="text-xs font-medium text-muted-foreground">
         {label}
       </label>
       <div className="group relative">{children}</div>
@@ -388,8 +386,8 @@ function Styles() {
       .spark { animation: ecomlySpark 7s linear infinite; }
 
       @keyframes ecomlyPulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,.6); }
-        70% { box-shadow: 0 0 0 7px rgba(34,211,238,0); }
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255,217,192,.7); }
+        70% { box-shadow: 0 0 0 7px rgba(255,217,192,0); }
       }
       .pulse-dot { animation: ecomlyPulse 2s infinite; }
 
@@ -399,7 +397,7 @@ function Styles() {
         100% { background-position: 0% 50%; }
       }
       .gradient-text {
-        background-image: linear-gradient(120deg,#22D3EE,#A78BFA,#DB2777,#22D3EE);
+        background-image: linear-gradient(120deg,#FFF3EC,#FFC9A8,#B8863B,#FFF3EC);
         background-size: 250% 250%;
         animation: ecomlyGradient 7s ease infinite;
       }
@@ -407,8 +405,8 @@ function Styles() {
       .glass-row { transition: transform .3s ease, background .3s ease, border-color .3s ease; }
       .glass-row:hover {
         transform: translateX(6px);
-        background: rgba(255,255,255,.11);
-        border-color: rgba(255,255,255,.25);
+        background: rgba(255,255,255,.2);
+        border-color: rgba(255,255,255,.4);
       }
       @keyframes ecomlyPop { from { transform: scale(.4); opacity:0 } to { transform: scale(1); opacity:1 } }
       .step-num { animation: ecomlyPop .5s cubic-bezier(.34,1.56,.64,1) both; }
@@ -425,29 +423,28 @@ function Styles() {
       .input {
         width: 100%;
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.04);
+        border: 1px solid var(--border);
+        background: var(--surface);
         padding: 0.7rem 0.9rem;
         font-size: 0.875rem;
-        color: #EEF1FB;
+        color: var(--foreground);
         outline: none;
         transition: border-color .25s, box-shadow .25s, background .25s;
       }
-      .input::placeholder { color: rgba(255,255,255,.32); }
+      .input::placeholder { color: rgba(107,104,98,.55); }
       .input:focus {
-        border-color: rgba(34,211,238,.85);
-        background: rgba(34,211,238,.06);
-        box-shadow: 0 0 0 4px rgba(34,211,238,.14);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(199,91,58,.12);
       }
       .icon {
         pointer-events: none;
         position: absolute;
         top: 0; bottom: 0; left: 0.9rem;
         display: flex; align-items: center;
-        color: rgba(255,255,255,.4);
+        color: var(--muted-foreground);
         transition: color .25s;
       }
-      .group:focus-within .icon { color: #22D3EE; }
+      .group:focus-within .icon { color: var(--primary); }
 
       .btn-primary {
         position: relative;
@@ -456,14 +453,14 @@ function Styles() {
         border-radius: 12px;
         padding: 0.75rem 1rem;
         font-size: 0.875rem; font-weight: 600; color: #fff;
-        background-image: linear-gradient(120deg,#22D3EE,#4F46E5,#7C3AED,#22D3EE);
+        background-image: linear-gradient(120deg,#C75B3A,#A9472E,#B8863B,#C75B3A);
         background-size: 300% 100%;
-        box-shadow: 0 10px 30px -10px rgba(79,70,229,.85);
+        box-shadow: 0 10px 28px -10px rgba(199,91,58,.6);
         transition: background-position .6s ease, transform .15s ease, box-shadow .3s;
       }
       .btn-primary:hover:not(:disabled) {
         background-position: 100% 0;
-        box-shadow: 0 14px 40px -10px rgba(34,211,238,.7);
+        box-shadow: 0 14px 36px -10px rgba(184,134,59,.55);
       }
       .btn-primary:active:not(:disabled) { transform: scale(.98); }
       .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
