@@ -58,17 +58,34 @@ export async function exchangeCodeForTokens(code: string): Promise<EbayTokenResp
   return JSON.parse(raw) as EbayTokenResponse;
 }
 
-export async function fetchEbayUsername(accessToken: string): Promise<string | null> {
+export interface EbayIdentity {
+  userId: string | null;
+  username: string | null;
+}
+
+/**
+ * Resolves the seller account the token belongs to. Failure is non-fatal: the
+ * tokens are still valid, so a null identity simply means we could not label
+ * the integration in the UI.
+ */
+export async function fetchEbayIdentity(accessToken: string): Promise<EbayIdentity> {
   try {
     const r = await fetch(`${EBAY_API}/identity/v1/user/`, {
       headers: { Authorization: `Bearer ${accessToken}` },
       cache: "no-store",
     });
-    if (!r.ok) return null;
-    const body = (await r.json().catch(() => null)) as { username?: string } | null;
-    return body?.username ?? null;
+    if (!r.ok) return { userId: null, username: null };
+
+    const body = (await r.json().catch(() => null)) as
+      | { userId?: string; username?: string }
+      | null;
+
+    return {
+      userId: body?.userId ?? null,
+      username: body?.username ?? null,
+    };
   } catch {
-    return null;
+    return { userId: null, username: null };
   }
 }
 
