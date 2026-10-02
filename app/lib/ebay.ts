@@ -29,7 +29,10 @@ export const EBAY_API = ENDPOINTS[EBAY_ENV].api;
 export const EBAY_CLIENT_ID = process.env.EBAY_CLIENT_ID;
 
 export const EBAY_CLIENT_SECRET =
-  process.env.EBAY_CERT_ID ?? process.env.EBAY_CLIENT_SECRET_CERT ?? process.env.Cert_ID;
+  process.env.EBAY_CLIENT_SECRET ??
+  process.env.EBAY_CERT_ID ??
+  process.env.EBAY_CLIENT_SECRET_CERT ??
+  process.env.Cert_ID;
 
 export const EBAY_RUNAME = process.env.EBAY_RUNAME ?? process.env.RUN;
 

@@ -4,6 +4,7 @@ import { Integration } from "@/lib/models/integration";
 import { getOrgId } from "@/lib/org";
 import { Card, PageHeader } from "../components/ui";
 import { disconnectEbay } from "./actions";
+import { EbaySyncControl } from "./EbaySyncControl";
 
 const COMING_SOON = ["Amazon", "Walmart", "Shopify"];
 
@@ -139,11 +140,14 @@ export default async function IntegrationsPage({
           </span>
 
           {isConnected || hasError ? (
-            <form action={disconnectEbay}>
-              <button type="submit" className={DISCONNECT_CLASS}>
-                Disconnect
-              </button>
-            </form>
+            <>
+              {isConnected && <EbaySyncControl />}
+              <form action={disconnectEbay}>
+                <button type="submit" className={DISCONNECT_CLASS}>
+                  Disconnect
+                </button>
+              </form>
+            </>
           ) : (
             <Link
               href="/api/ebay/connect"

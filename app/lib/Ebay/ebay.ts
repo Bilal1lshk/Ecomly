@@ -3,7 +3,7 @@ import { Types } from "mongoose";
 import { connectDB } from "@/lib/database/db";
 import { Integration } from "@/lib/models/integration";
 import { encrypt, decrypt } from "@/lib/crypto";
-import { EBAY_API, EBAY_ENV, EBAY_CLIENT_ID, EBAY_RUNAME } from "@/lib/ebay";
+import { EBAY_API, EBAY_ENV, EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_RUNAME } from "@/lib/ebay";
 
 export const EBAY_OAUTH_ENV = EBAY_ENV === "production" ? "PRODUCTION" : "SANDBOX";
 
@@ -35,11 +35,11 @@ export function getEbayClient(): EbayAuthToken {
 
   if (!EBAY_CLIENT_ID) throw new Error("Missing EBAY_CLIENT_ID");
   if (!EBAY_RUNAME) throw new Error("Missing EBAY_RUNAME");
-  if (!process.env.EBAY_CLIENT_SECRET) throw new Error("Missing EBAY_CLIENT_SECRET");
+  if (!EBAY_CLIENT_SECRET) throw new Error("Missing EBAY_CLIENT_SECRET");
 
   client = new EbayAuthToken({
     clientId: EBAY_CLIENT_ID,
-    clientSecret: process.env.EBAY_CLIENT_SECRET,
+    clientSecret: EBAY_CLIENT_SECRET,
     env: EBAY_OAUTH_ENV,
     redirectUri: getEbayRedirectUri(),
   });
