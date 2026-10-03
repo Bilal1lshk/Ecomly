@@ -1,22 +1,15 @@
 import { NextResponse } from "next/server";
-import { getOrgId, getSessionUserId } from "@/lib/org";
+import { ensureOrgId } from "@/lib/org";
 import { attachEbayStateCookie, createEbayState } from "@/lib/ebay-state";
 import { generateConsentUrl } from "@/lib/Ebay/ebay";
 
 export async function GET() {
-  const orgId = await getOrgId();
+  // Provisions a personal workspace on first connect, so sellers never hit an
+  // org-setup wall before they can authorise eBay.
+  const orgId = await ensureOrgId();
 
   if (!orgId) {
-    const signedIn = await getSessionUserId();
-
-    if (!signedIn) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-
-    return NextResponse.json(
-      { error: "no_organization", detail: "Join an organisation before connecting eBay." },
-      { status: 403 }
-    );
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
   try {

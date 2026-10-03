@@ -17,9 +17,20 @@ import {
 
 const REFRESH_TOKEN_HORIZON_MS = 730 * 24 * 60 * 60 * 1000;
 
+/**
+ * Base URL for the post-OAuth redirect.
+ *
+ * Whitespace is stripped rather than trimmed: an NBSP or stray space anywhere in
+ * the value makes `new URL` throw, which would crash the callback *after* eBay
+ * had already returned a valid code, stranding the seller on a 500.
+ */
+function appOrigin(): string {
+  const cleaned = (process.env.NEXT_PUBLIC_APP_URL ?? "").replace(/\s+/g, "");
+  return cleaned.replace(/\/+$/, "") || "http://localhost:3000";
+}
+
 function landing(status: string, detail?: string) {
-  const base = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "");
-  const url = new URL("/dashboard/integrations", base);
+  const url = new URL("/dashboard/integrations", appOrigin());
   url.searchParams.set("ebay", status);
   if (detail) url.searchParams.set("ebay_detail", detail);
   return NextResponse.redirect(url);

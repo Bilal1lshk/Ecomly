@@ -158,8 +158,8 @@ export default async function IntegrationsPage({
 
       {!orgId && (
         <p className="mb-6 rounded-2xl bg-warning/10 px-4 py-3 text-sm font-medium text-warning ring-1 ring-warning/20">
-          You are not a member of an organisation yet. Integrations are stored per organisation, so
-          ask an owner to invite you before connecting a marketplace.
+          You do not have a workspace yet. One is created automatically the first time you connect
+          a marketplace.
         </p>
       )}
 
@@ -205,27 +205,14 @@ export default async function IntegrationsPage({
               </form>
             </>
           ) : (
-            <>
-              {orgId ? (
-                /*
-                 * A plain <a>, not next/link: the App Router client router does not
-                 * follow a route handler's redirect off-origin, so <Link> makes this
-                 * button do nothing. This has to stay a full document navigation.
-                 */
-                <a href="/api/ebay/connect" className={CONNECT_CLASS}>
-                  Connect eBay
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  title="Join an organisation before connecting eBay."
-                  className={`${CONNECT_CLASS} cursor-not-allowed opacity-50`}
-                >
-                  Connect eBay
-                </button>
-              )}
-            </>
+            /*
+ * A plain <a>, not next/link: the App Router client router does not follow a
+ * route handler's redirect off-origin, so <Link> makes this button do nothing.
+ * This has to stay a full document navigation.
+ */
+<a href="/api/ebay/connect" className={CONNECT_CLASS}>
+  Connect eBay
+</a>
           )}
         </div>
       </Card>
