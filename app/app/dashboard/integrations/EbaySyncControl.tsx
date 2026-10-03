@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 
 type SyncResponse = {
   ok?: boolean;
-  orders?: number;
-  inventoryItems?: number;
+  fetched?: { listings?: number; orders?: number; inventoryItems?: number };
+  created?: number;
+  updated?: number;
+  skipped?: number;
+  stockUnits?: number;
   error?: string;
 };
 
@@ -31,9 +34,15 @@ export function EbaySyncControl() {
         return;
       }
 
+      const created = result.created ?? 0;
+      const updated = result.updated ?? 0;
+      const parts = [`${created} new`, `${updated} updated`];
+
+      if (result.skipped) parts.push(`${result.skipped} skipped`);
+
       setMessage({
         kind: "success",
-        text: `Synced ${result.orders ?? 0} orders and ${result.inventoryItems ?? 0} inventory items.`,
+        text: `Sync complete — ${parts.join(", ")}.`,
       });
       router.refresh();
     } catch {
@@ -52,20 +61,10 @@ export function EbaySyncControl() {
         aria-busy={isSyncing}
         className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:cursor-wait disabled:opacity-70"
       >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          className={isSyncing ? "animate-spin" : ""}
-          aria-hidden="true"
-        >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={isSyncing ? "animate-spin" : ""} aria-hidden="true">
           <path
             d="M20 7v5h-5M4 17v-5h5m-4.1-3A8 8 0 0 1 18.7 6L20 7M4 17l1.3 1A8 8 0 0 0 19.1 15"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
           />
         </svg>
         {isSyncing ? "Syncing..." : "Sync now"}

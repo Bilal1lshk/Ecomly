@@ -4,6 +4,7 @@ import { externalSchema, IExternal, reuse, T } from "./common";
 export type ProductStatus = "draft" | "active" | "archived";
 
 export interface IVariant {
+  _id?: Types.ObjectId;
   sku: string;
   title?: string;
   options?: Map<string, string>;
