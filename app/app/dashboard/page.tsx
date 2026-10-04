@@ -45,8 +45,7 @@ export default async function OverviewPage() {
 
       {!orgId && (
         <p className="mb-6 rounded-2xl bg-warning/10 px-4 py-3 text-sm font-medium text-warning ring-1 ring-warning/20">
-          You are not a member of an organisation yet, so there is no data to show. Ask an owner
-          to invite you to one.
+          You are not a member of an organisation yet. <a href="/create-organization" className="underline">Create an organization</a> to get started.
         </p>
       )}
 

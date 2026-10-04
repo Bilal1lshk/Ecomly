@@ -27,7 +27,7 @@ const ERROR_COPY: Record<string, string> = {
   token_exchange_failed: "eBay rejected the authorisation. Please try again.",
   save_failed: "The eBay connection could not be saved. Please try again.",
   unauthorized: "Your session expired. Please sign in and try again.",
-  no_organization: "You are not a member of an organisation, so there is nothing to connect eBay to.",
+  no_organization: "You are not a member of an organisation. Create an organization to connect eBay.",
 };
 
 const CONNECT_CLASS =
@@ -158,8 +158,7 @@ export default async function IntegrationsPage({
 
       {!orgId && (
         <p className="mb-6 rounded-2xl bg-warning/10 px-4 py-3 text-sm font-medium text-warning ring-1 ring-warning/20">
-          You do not have a workspace yet. One is created automatically the first time you connect
-          a marketplace.
+          You are not a member of an organisation yet. <a href="/create-organization" className="underline">Create an organization</a> to get started.
         </p>
       )}
 

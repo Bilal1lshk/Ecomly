@@ -6,9 +6,17 @@ import { Membership, Organization } from "@/lib/models/organization";
 import { User } from "@/lib/models/user";
 
 export async function getSessionUserId(): Promise<string | null> {
-  const session = await auth();
-  const id = session?.user?.id;
-  return typeof id === "string" && Types.ObjectId.isValid(id) ? id : null;
+  try {
+    const session = await auth();
+    const id = session?.user?.id;
+    if (!id) {
+      console.log("[getSessionUserId] No session user id found", session?.user);
+    }
+    return typeof id === "string" && Types.ObjectId.isValid(id) ? id : null;
+  } catch (e) {
+    console.error("[getSessionUserId] error:", e);
+    return null;
+  }
 }
 
 export async function getOrgId(): Promise<string | null> {
@@ -52,6 +60,62 @@ async function uniqueSlug(base: string): Promise<string> {
  *
  * Returns null only when there is no valid session.
  */
+export interface CreateOrganizationParams {
+  name: string;
+  slug?: string;
+}
+
+export async function createOrganization(
+  params: CreateOrganizationParams
+): Promise<{ orgId: string; slug: string }> {
+  const userId = await getSessionUserId();
+  if (!userId) {
+    throw new Error("unauthorized");
+  }
+
+  await connectDB();
+
+  const baseSlug = params.slug?.trim()
+    ? slugify(params.slug.trim())
+    : slugify(params.name.trim());
+  const slug = await uniqueSlug(baseSlug);
+
+  const org = await Organization.create({
+    name: params.name.trim(),
+    slug,
+  });
+
+  try {
+    await Membership.create({
+      organizationId: org._id,
+      userId,
+      role: "owner",
+    });
+  } catch (e) {
+    await Organization.deleteOne({ _id: org._id }).catch(() => undefined);
+    throw e;
+  }
+
+  return { orgId: org._id.toString(), slug };
+}
+
+export async function getCurrentMembership() {
+  const userId = await getSessionUserId();
+  if (!userId) return null;
+
+  await connectDB();
+  const membership = await Membership.findOne({ userId })
+    .select("organizationId role")
+    .lean();
+
+  if (!membership) return null;
+
+  return {
+    orgId: membership.organizationId.toString(),
+    role: membership.role ?? "staff",
+  };
+}
+
 export async function ensureOrgId(): Promise<string | null> {
   const userId = await getSessionUserId();
   if (!userId) return null;
