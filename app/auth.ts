@@ -22,13 +22,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         await connectDB();
 
-        const user = await User.findOne({ email: credentials.email }).select("+passwordHash");
+        const user = await User.findOne({ email: credentials.email }).select(
+          "+passwordHash +emailVerified"
+        );
 
         if (!user || !user.passwordHash) return null;
 
         const isValid = await bcrypt.compare(credentials.password as string, user.passwordHash);
 
         if (!isValid) return null;
+
+        if (!user.emailVerified) return null;
 
         return {
           id: user._id.toString(),
