@@ -1,6 +1,12 @@
 "use client";
 
-import type { ReactNode, SelectHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type {
+  ButtonHTMLAttributes,
+  InputHTMLAttributes,
+  ReactNode,
+  SelectHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 import { useEffect, useRef } from "react";
 
 const CONTROL =
@@ -57,8 +63,9 @@ export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) {
 export function Button({
   variant = "primary",
   className = "",
+  type = "button",
   ...rest
-}: InputHTMLAttributes<HTMLButtonElement> & {
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "danger" | "ghost";
 }) {
   const base =
@@ -70,10 +77,6 @@ export function Button({
     secondary: "border border-border bg-surface text-foreground hover:bg-surface-secondary",
     danger: "border border-danger/30 bg-danger/10 text-danger hover:bg-danger/20",
     ghost: "text-muted-foreground hover:bg-surface-secondary hover:text-foreground",
-  };
-
-  const { type = "button", ...rest } = rest as InputHTMLAttributes<HTMLButtonElement> & {
-    type?: "button" | "submit" | "reset";
   };
 
   return (

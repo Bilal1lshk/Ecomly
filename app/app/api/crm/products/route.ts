@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
   if (q) filter.$text = { $search: q };
 
   const products = await Product.find(filter)
-    .select("name slug status brand tags images variants categoryId external")
+    .select("name slug status brand description tags images variants categoryId external")
     .sort({ updatedAt: -1 })
     .limit(limit)
     .lean();

@@ -8,6 +8,7 @@ import { optionalStr, str, strArray, toObjectId } from "@/lib/validate";
 
 interface AddressInput {
   label?: string;
+  phone?: string;
   line1: string;
   line2?: string;
   city: string;
@@ -37,6 +38,7 @@ function parseAddresses(value: unknown): AddressInput[] | undefined {
 
     parsed.push({
       label: optionalStr(address.label),
+      phone: optionalStr(address.phone),
       line1,
       line2: optionalStr(address.line2),
       city,
@@ -97,6 +99,7 @@ export async function GET(request: NextRequest) {
       tags: customer.tags ?? [],
       addresses: (customer.addresses ?? []).map((address) => ({
         label: address.label ?? "",
+        phone: (address as { phone?: string }).phone ?? "",
         line1: address.line1,
         line2: address.line2 ?? "",
         city: address.city,

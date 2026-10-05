@@ -51,7 +51,8 @@ export async function GET(request: NextRequest) {
       .lean(),
   ]);
 
-  const type Product = {
+  type PopulatedProduct = {
+    _id?: unknown;
     name?: string;
     images?: { url?: string }[];
     variants?: {
@@ -66,25 +67,32 @@ export async function GET(request: NextRequest) {
   const rowMap = new Map<string, StockRow>();
 
   for (const level of levels) {
-    const product = level.productId as unknown as Product;
+const populated = level.productId as unknown;
+    const product = populated as PopulatedProduct;
+    const productRef = populated as { _id?: unknown } | undefined;
+    const locationRef = level.locationId as unknown;
+    const locationDoc = locationRef as { _id?: unknown; name?: string } | undefined;
+
     const variant =
-      product?.variants?.find((v) => String(v._id) === String(level.variantId)) ??
-      product?.variants?.[0];
+      product?.variants?.find(
+        (candidate) =>
+          candidate._id && String(candidate._id) === String(level.variantId)
+      ) ?? product?.variants?.[0];
 
     if (!variant?._id) continue;
 
-    rowMap.set(String(level.variantId), {
+    rowMap.set(String(variant._id), {
       id: String(level._id),
       variantId: String(variant._id),
-      productId: String(level.productId?._id ?? level.productId),
+      productId: String(productRef?._id ?? populated),
       productName: product?.name ?? "Unknown product",
       sku: variant.sku ?? "",
       variantTitle: variant.title ?? "",
       reorderLevel: variant.reorderLevel ?? 5,
       quantity: level.quantity ?? 0,
       reserved: level.reserved ?? 0,
-      locationId: String(level.locationId?._id ?? level.locationId),
-      locationName: (level.locationId as unknown as { name?: string })?.name ?? "Unassigned",
+      locationId: String(locationDoc?._id ?? locationRef),
+      locationName: locationDoc?.name ?? "Unassigned",
       price: variant.price ?? 0,
       imageUrl: product?.images?.[0]?.url ?? "",
     });
@@ -142,7 +150,7 @@ export async function GET(request: NextRequest) {
   });
 }
 
-export interface StockRow {
+interface StockRow {
   id: string;
   variantId: string;
   productId: string;
@@ -232,54 +240,59 @@ export async function POST(request: NextRequest) {
       return badRequest("Create a stock location first", { locationId: "Required" });
     }
 
-    locationId = fallback._id;
+    locationId = String(fallback._id);
   }
 
   const oid = new Types.ObjectId(locationId);
 
-  const level = await InventoryLevel.findOneAndUpdate(
-    {
-      organizationId: org.orgId,
-      productId,
-      variantId: matchedVariant._id,
-      locationId: oid,
-    },
-    { $inc: { quantity: delta }, $setOnInsert: { reserved: 0 } },
-    { upsert: true, new: true },
-  ).lean();
+  const filter = {
+    organizationId: org.orgId,
+    productId,
+    variantId: matchedVariant._id,
+    locationId: oid,
+  };
 
-  // An absolute adjustment is sent as a delta from the previous count, which
-  // depends on the row we just created, so recompute and correct in that case.
-  if (type === "adjustment") {
-    const target = num(body?.quantityChange, NaN);
-    const correction = target - (level?.quantity ?? 0);
+  const before = await InventoryLevel.findOne(filter).select("quantity").lean();
+  const previous = before?.quantity ?? 0;
 
-    if (correction !== 0) {
-      await InventoryLevel.updateOne(
-        { organizationId: org.orgId, productId, variantId: matchedVariant._id, locationId: oid },
-        { $inc: { quantity: correction } }
-      );
-    }
+  // `adjustment` carries the count the seller just counted ("there are 7 left"),
+  // so it is turned into a delta here. The rest of the types are already deltas.
+  const applied = type === "adjustment" ? requested - previous : requested;
+  const finalQuantity = previous + applied;
+
+  // Clamp rather than error: overselling briefly is normal when a sale lands
+  // before the stock was adjusted, and a negative stock level is not useful.
+  if (finalQuantity < 0) {
+    return badRequest(
+      `Only ${previous} in stock at this location. Reduce the amount or use a transfer.`,
+      { quantityChange: `Max ${previous}` }
+    );
   }
 
-  const finalQuantity = level?.quantity ?? 0;
-  const applied = type === "adjustment" ? finalQuantity - (level?.quantity ?? 0) : delta;
-
   try {
+    await InventoryLevel.updateOne(
+      filter,
+      { $set: { quantity: finalQuantity }, $setOnInsert: { reserved: 0 } },
+      { upsert: true }
+    );
+
     await StockMovement.create({
       organizationId: org.orgId,
       productId,
       variantId: matchedVariant._id,
       locationId: oid,
       type,
-      quantityChange: type === "adjustment" ? applied : delta,
+      quantityChange: applied,
       note: optionalStr(body?.note),
     });
   } catch (error) {
     return serverError("record stock movement", error);
   }
 
-  return Response.json({ ok: true, quantity: finalQuantity, applied }, { status: 201 });
+  return Response.json(
+    { ok: true, quantity: finalQuantity, previous, applied },
+    { status: 201 }
+  );
 }
 
 /**

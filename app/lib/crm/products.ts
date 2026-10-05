@@ -148,6 +148,7 @@ export interface ProductView {
   slug: string;
   status: string;
   brand: string;
+  description: string;
   tags: string[];
   imageUrls: string[];
   categoryId: string;
@@ -169,6 +170,7 @@ export function serializeProduct(product: {
   slug?: string;
   status?: string;
   brand?: string;
+  description?: string;
   tags?: string[];
   images?: { url?: string }[];
   categoryId?: unknown;
@@ -192,6 +194,7 @@ export function serializeProduct(product: {
     slug: product.slug ?? "",
     status: product.status ?? "draft",
     brand: product.brand ?? "",
+    description: product.description ?? "",
     tags: product.tags ?? [],
     imageUrls: (product.images ?? []).map((image) => image.url ?? "").filter(Boolean),
     categoryId: product.categoryId ? String(product.categoryId) : "",

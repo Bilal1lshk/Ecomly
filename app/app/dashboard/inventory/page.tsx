@@ -1,23 +1,156 @@
-import Link from "next/link";
 import { getOrgId } from "@/lib/org";
-import { getDashboardStats, getInventoryOverview } from "@/lib/dashboard-stats";
-import { Card, EmptyState, PageHeader, StatCard } from "../components/ui";
+import { connectDB } from "@/lib/database/db";
+import { Product } from "@/lib/models/product";
+import { InventoryLevel, Location, StockMovement } from "@/lib/models/inventory";
+import { PageHeader } from "../components/ui";
+import {
+  InventoryManager,
+  type MovementRow,
+  type StockLocation,
+  type StockRow,
+} from "./InventoryManager";
 
 export const dynamic = "force-dynamic";
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 200;
+const MOVEMENT_LIMIT = 20;
 
-function formatDate(value: Date | undefined): string {
-  if (!value) return "—";
-  return value.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+interface PopulatedProduct {
+  _id?: unknown;
+  name?: string;
+  images?: { url?: string }[];
+  variants?: {
+    _id?: unknown;
+    sku?: string;
+    title?: string;
+    reorderLevel?: number;
+    price?: number;
+  }[];
 }
 
+interface PopulatedLocation {
+  _id?: unknown;
+  name?: string;
+}
+
+/**
+ * Manual inventory management.
+ *
+ * Products are fetched alongside the InventoryLevel rows so a variant that has
+ * never been given a quantity still appears with 0 in stock and can be adjusted
+ * without a separate "create stock" step.
+ */
 export default async function InventoryPage() {
   const orgId = await getOrgId();
-  const stats = await getDashboardStats(orgId);
-  const { rows, movements } = await getInventoryOverview(orgId);
 
-  const lowStock = rows.filter((row) => row.quantity > 0 && row.quantity <= row.reorderLevel);
+  if (!orgId) {
+    return (
+      <div>
+        <PageHeader
+          title="Inventory"
+          description="Stock levels, low-stock alerts and a full movement history per variant."
+        />
+      </div>
+    );
+  }
+
+  await connectDB();
+
+  const [levels, products, locations, movements] = await Promise.all([
+    InventoryLevel.find({ organizationId: orgId })
+      .populate("productId", "name variants images")
+      .populate("locationId", "name")
+      .sort({ quantity: 1 })
+      .limit(PAGE_SIZE)
+      .lean(),
+    Product.find({ organizationId: orgId })
+      .select("name variants images")
+      .limit(PAGE_SIZE)
+      .lean(),
+    Location.find({ organizationId: orgId }).sort({ name: 1 }).lean(),
+    StockMovement.find({ organizationId: orgId })
+      .populate("productId", "name")
+      .sort({ createdAt: -1 })
+      .limit(MOVEMENT_LIMIT)
+      .lean(),
+  ]);
+
+  const rowMap = new Map<string, StockRow>();
+
+  for (const level of levels) {
+    const productRef = level.productId as unknown;
+    const product = productRef as PopulatedProduct;
+    const locationRef = level.locationId as unknown;
+    const location = locationRef as PopulatedLocation;
+
+    const variant =
+      product?.variants?.find(
+        (candidate) => candidate._id && String(candidate._id) === String(level.variantId)
+      ) ?? product?.variants?.[0];
+
+    if (!variant?._id) continue;
+
+    rowMap.set(String(variant._id), {
+      id: String(level._id),
+      variantId: String(variant._id),
+      productId: String(product?._id ?? productRef),
+      productName: product?.name ?? "Unknown product",
+      sku: variant.sku ?? "",
+      variantTitle: variant.title ?? "",
+      reorderLevel: variant.reorderLevel ?? 5,
+      quantity: level.quantity ?? 0,
+      reserved: level.reserved ?? 0,
+      locationId: String(location?._id ?? locationRef),
+      locationName: location?.name ?? "Unassigned",
+      price: variant.price ?? 0,
+      imageUrl: product?.images?.[0]?.url ?? "",
+    });
+  }
+
+  const defaultLocation = locations.find((location) => location.isDefault) ?? locations[0];
+
+  for (const product of products) {
+    for (const variant of product.variants ?? []) {
+      if (!variant?._id) continue;
+      if (rowMap.has(String(variant._id))) continue;
+
+      rowMap.set(String(variant._id), {
+        id: "",
+        variantId: String(variant._id),
+        productId: String(product._id),
+        productName: product.name,
+        sku: variant.sku ?? "",
+        variantTitle: variant.title ?? "",
+        reorderLevel: variant.reorderLevel ?? 5,
+        quantity: 0,
+        reserved: 0,
+        locationId: defaultLocation ? String(defaultLocation._id) : "",
+        locationName: defaultLocation?.name ?? "No location yet",
+        price: variant.price ?? 0,
+        imageUrl: product.images?.[0]?.url ?? "",
+      });
+    }
+  }
+
+  const rows = [...rowMap.values()].sort((a, b) => a.quantity - b.quantity);
+
+  const stockLocations: StockLocation[] = locations.map((location) => ({
+    id: String(location._id),
+    name: location.name,
+    address: location.address ?? "",
+    city: location.city ?? "",
+    isDefault: location.isDefault === true,
+    isActive: location.isActive !== false,
+  }));
+
+  const movementRows: MovementRow[] = movements.map((movement) => ({
+    id: String(movement._id),
+    productName: (movement.productId as unknown as { name?: string })?.name ?? "Unknown product",
+    type: movement.type,
+    quantityChange: movement.quantityChange,
+    note: movement.note ?? "",
+    createdAt: movement.createdAt,
+  }));
 
   return (
     <div>
@@ -26,146 +159,7 @@ export default async function InventoryPage() {
         description="Stock levels, low-stock alerts and a full movement history per variant."
       />
 
-      {orgId && (
-        <div className="mb-8 grid gap-5 sm:grid-cols-3">
-          <StatCard label="Units on hand" value={String(stats.unitsOnHand)} hint="Across all locations" />
-          <StatCard
-            label="Low stock"
-            value={String(stats.lowStockCount)}
-            tone={stats.lowStockCount > 0 ? "warning" : "success"}
-            hint={stats.lowStockCount === 0 ? "Nothing below reorder level" : "At or below reorder level"}
-          />
-          <StatCard
-            label="Movements (30d)"
-            value={String(stats.movements30d)}
-            hint="Stock in / out / adjustments"
-          />
-        </div>
-      )}
-
-      {rows.length === 0 ? (
-        <EmptyState
-          icon={
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2M4 7h16M4 7v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7M9 11h6"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          }
-          title="No stock to track yet"
-          description="Connect eBay and sync to pull your listing quantities in as stock levels, or add products manually to track levels here."
-          action={
-            <Link
-              href={stats.ebayConnected ? "/dashboard/products" : "/dashboard/integrations"}
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-[0_10px_26px_-10px_rgba(199,91,58,.8)] transition-all hover:bg-primary-hover active:scale-[0.98]"
-            >
-              {stats.ebayConnected ? "Go to products" : "Connect eBay"}
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14m0 0-6-6m6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-          }
-        />
-      ) : (
-        <div className="grid gap-5 lg:grid-cols-3">
-          <Card className="overflow-hidden lg:col-span-2">
-            <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
-              <p className="text-sm font-semibold text-foreground">
-                Stock levels
-                {rows.length >= PAGE_SIZE ? ` (showing first ${PAGE_SIZE})` : ""}
-              </p>
-              {lowStock.length > 0 && (
-                <p className="text-xs font-semibold text-warning">{lowStock.length} below reorder</p>
-              )}
-            </div>
-
-            <ul className="divide-y divide-border">
-              {rows.map((row) => {
-                const isLow = row.quantity > 0 && row.quantity <= row.reorderLevel;
-                const isOut = row.quantity === 0;
-
-                return (
-                  <li
-                    key={row.id}
-                    className="flex items-center gap-4 p-4 transition-colors hover:bg-surface-secondary"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-foreground">{row.name}</p>
-                      <p className="mt-0.5 truncate text-xs text-muted-foreground">
-                        {row.sku ? `SKU ${row.sku}` : "No SKU"} · reorder at {row.reorderLevel}
-                      </p>
-                    </div>
-
-                    <span
-                      className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
-                        isOut
-                          ? "bg-danger/10 text-danger"
-                          : isLow
-                            ? "bg-warning/10 text-warning"
-                            : "bg-success/10 text-success"
-                      }`}
-                    >
-                      {isOut ? "Out of stock" : isLow ? "Low" : "In stock"}
-                    </span>
-
-                    <span className="w-20 shrink-0 text-right text-sm font-semibold text-foreground">
-                      {row.quantity}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          </Card>
-
-          <Card className="overflow-hidden">
-            <div className="border-b border-border px-4 py-3">
-              <p className="text-sm font-semibold text-foreground">Recent movements</p>
-            </div>
-
-            {movements.length === 0 ? (
-              <p className="p-4 text-sm leading-relaxed text-muted-foreground">
-                No stock movements in the last 30 days. Movements appear when a sync changes a
-                quantity.
-              </p>
-            ) : (
-              <ul className="divide-y divide-border">
-                {movements.map((movement) => {
-                  const up = movement.quantityChange > 0;
-
-                  return (
-                    <li key={movement.id} className="p-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="truncate text-sm font-medium text-foreground">{movement.name}</p>
-                        <span
-                          className={`shrink-0 text-sm font-semibold ${
-                            up ? "text-success" : "text-danger"
-                          }`}
-                        >
-                          {up ? "+" : ""}
-                          {movement.quantityChange}
-                        </span>
-                      </div>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
-                        {movement.type.replace(/_/g, " ")} · {formatDate(movement.createdAt)}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </Card>
-        </div>
-      )}
+      <InventoryManager initial={rows} locations={stockLocations} movements={movementRows} />
     </div>
   );
 }
