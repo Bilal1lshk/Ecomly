@@ -9,12 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^4.0.48",
+       "@ai-sdk/groq": "^4.0.48",
     "@ai-sdk/react": "^4.0.119",
-<<<<<<< HEAD
-=======
     "@prisma/client": "^7.10.0",
->>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
     "ai": "^7.0.116",
     "bcryptjs": "^3.0.3",
     "ebay-oauth-nodejs-client": "^1.2.2",
