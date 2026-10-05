@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Link from "next/link";
 import { auth } from "@/auth";
 import { signOut } from "@/auth";
@@ -73,4 +74,10 @@ export default async function Home() {
       </main>
     </div>
   );
+=======
+import LandingPage from "./landing/page";
+
+export default function Home() {
+  return <LandingPage />;
+>>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
 }

@@ -29,7 +29,10 @@ export async function connectDB(): Promise<typeof mongoose> {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGO_URI).then((m) => {
+<<<<<<< HEAD
       console.log("Connected DB:", mongoose.connection.name);
+=======
+>>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
       return m;
     });
   }

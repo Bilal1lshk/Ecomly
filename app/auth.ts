@@ -42,4 +42,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    /**
+     * NextAuth's default session callback copies only name/email/image and drops
+     * `id`, so `session.user.id` is undefined without this. That silently breaks
+     * getSessionUserId()/getOrgId() and therefore every tenant-scoped query.
+     */
+    session({ session, token }) {
+      if (token.sub) session.user.id = token.sub;
+      if (token.id && !session.user.id) session.user.id = token.id as string;
+      return session;
+    },
+  },
 });
