@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ResetPasswordPage() {
@@ -13,6 +13,11 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const emailFromQuery = new URLSearchParams(window.location.search).get("email");
+    if (emailFromQuery) setEmail(emailFromQuery);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

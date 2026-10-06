@@ -3,6 +3,7 @@ import { externalSchema, IExternal, reuse, T } from "./common";
 
 export interface ICustomerAddress {
   label?: string;
+  phone?: string;
   line1: string;
   line2?: string;
   city: string;
@@ -36,6 +37,7 @@ const customerSchema = new Schema<ICustomer>(
     addresses: [
       {
         label: String,
+        phone: String,
         line1: { type: String, required: true },
         line2: String,
         city: { type: String, required: true },

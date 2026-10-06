@@ -14,21 +14,12 @@ export async function POST(req: NextRequest) {
     await connectDB();
 
     const hashedOtp = crypto.createHash("sha256").update(otp).digest("hex");
-<<<<<<< HEAD
-console.log("VERIFY EMAIL:", email);
-console.log("OTP HASH:", hashedOtp);
-=======
->>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
 
     const user = await User.findOne({
       email,
       emailVerifyToken: hashedOtp,
       emailVerifyExpires: { $gt: new Date() },
     }).select("+emailVerifyToken +emailVerifyExpires");
-<<<<<<< HEAD
-console.log("USER FOUND:", !!user);
-=======
->>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
     if (!user) {
       return NextResponse.json({ error: "Invalid or expired code" }, { status: 400 });
     }

@@ -34,6 +34,24 @@ export const NAV: NavItem[] = [
     ),
   },
   {
+    href: "/dashboard/categories",
+    label: "Categories",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
+        <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" />
+      </svg>
+    ),
+  },
+  {
+    href: "/dashboard/customers",
+    label: "Customers",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
+        <path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19m6-8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm10 8v-1.5a3.5 3.5 0 0 0-2.6-3.4M15 4.1a3.5 3.5 0 0 1 0 6.8" />
+      </svg>
+    ),
+  },
+  {
     href: "/dashboard/inventory",
     label: "Inventory",
     icon: (

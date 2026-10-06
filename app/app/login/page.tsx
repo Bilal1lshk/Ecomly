@@ -48,35 +48,8 @@ export default function LoginPage() {
           className="aurora-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/auth-bg.png')" }}
         />
-<<<<<<< HEAD
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="border border-border rounded-lg px-4 py-2 text-sm text-foreground bg-surface outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground"
-        />
-<div className="text-right">
-  <a
-    href="/forgot-password"
-    className="text-sm text-primary hover:text-primary-hover"
-  >
-    Forgot password?
-  </a>
-</div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-primary text-white rounded-lg py-2 text-sm font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-=======
         <div className="absolute inset-0 bg-gradient-to-br from-[#7C3220]/80 via-[#A9472E]/60 to-[#C75B3A]/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#5E2417]/70 via-transparent to-[#7C3220]/40" />
->>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
 
         {/* colour washes */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B1020]/85 via-[#1a1145]/55 to-[#070B18]/90" />
@@ -238,7 +211,7 @@ export default function LoginPage() {
                   <label htmlFor="password" className="text-xs font-medium text-muted-foreground">
                     Password
                   </label>
-                  <a href="#" className="text-xs font-medium text-primary transition-colors hover:text-primary-hover">
+                  <a href="/forgot-password" className="text-xs font-medium text-primary transition-colors hover:text-primary-hover">
                     Forgot password?
                   </a>
                 </div>

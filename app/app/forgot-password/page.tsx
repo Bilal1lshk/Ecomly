@@ -29,22 +29,12 @@ export default function ForgotPasswordPage() {
 
       const data = await res.json();
 
-<<<<<<< HEAD
       if (!res.ok || !data.success) {
         setError(data.error || "Something went wrong");
         return;
       }
 
-      setMessage(data.message);
-=======
-     if (!res.ok) {
-  setError(data.error || "Something went wrong");
-  return;
-}
-
-window.location.href = `/reset-password?email=${encodeURIComponent(email)}`;
->>>>>>> 961895612314718cef0c9aa4eeb243797abf607a
-      router.push("/reset-password");
+      router.push(`/reset-password?email=${encodeURIComponent(email)}`);
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
