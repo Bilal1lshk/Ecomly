@@ -2,16 +2,19 @@ export type EbayEnv = "sandbox" | "production";
 
 interface EbayEndpoints {
   api: string;
+  authorize: string;
   token: string;
 }
 
 const ENDPOINTS: Record<EbayEnv, EbayEndpoints> = {
   sandbox: {
     api: "https://api.sandbox.ebay.com",
+    authorize: "https://auth.sandbox.ebay.com/oauth2/authorize",
     token: "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
   },
   production: {
     api: "https://api.ebay.com",
+    authorize: "https://auth.ebay.com/oauth2/authorize",
     token: "https://api.ebay.com/identity/v1/oauth2/token",
   },
 };
@@ -25,6 +28,11 @@ export const EBAY_ENV: EbayEnv = /^(prod|prd|production|live)/.test(rawEbayEnv)
   : "sandbox";
 
 export const EBAY_API = ENDPOINTS[EBAY_ENV].api;
+export const EBAY_AUTHORIZE_URL = ENDPOINTS[EBAY_ENV].authorize;
+export const EBAY_TOKEN_URL = ENDPOINTS[EBAY_ENV].token;
+
+// OAuth scope identifiers do not vary by eBay environment.
+export const EBAY_SCOPE_BASE = "https://api.ebay.com/oauth/api_scope";
 
 export const EBAY_CLIENT_ID = process.env.EBAY_CLIENT_ID;
 
@@ -34,7 +42,9 @@ export const EBAY_CLIENT_SECRET =
   process.env.EBAY_CLIENT_SECRET_CERT ??
   process.env.Cert_ID;
 
-export const EBAY_RUNAME = process.env.EBAY_RUNAME ?? process.env.RUN;
+// eBay calls this redirect URI name a RuName. Support the common underscore
+// spelling as well so the same value is used in authorization and token calls.
+export const EBAY_RUNAME = process.env.EBAY_RUNAME ?? process.env.EBAY_RU_NAME ?? process.env.RUN;
 
 export interface EbayToken {
   access_token: string;
@@ -70,7 +80,7 @@ export const ebayAuth = {
       },
       body: new URLSearchParams({
         grant_type: "client_credentials",
-        scope: `${endpoints.api}/oauth/api_scope`,
+        scope: EBAY_SCOPE_BASE,
       }),
       cache: "no-store",
     });

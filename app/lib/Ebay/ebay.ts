@@ -1,66 +1,96 @@
-import EbayAuthToken, { EbayTokenResponse } from "ebay-oauth-nodejs-client";
 import { Types } from "mongoose";
 import { connectDB } from "@/lib/database/db";
 import { Integration } from "@/lib/models/integration";
 import { encrypt, decrypt } from "@/lib/crypto";
-import { EBAY_API, EBAY_ENV, EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_RUNAME } from "@/lib/ebay";
+import {
+  EBAY_API,
+  EBAY_AUTHORIZE_URL,
+  EBAY_CLIENT_ID,
+  EBAY_CLIENT_SECRET,
+  EBAY_ENV,
+  EBAY_RUNAME,
+  EBAY_SCOPE_BASE,
+  EBAY_TOKEN_URL,
+} from "@/lib/ebay";
 
 export const EBAY_OAUTH_ENV = EBAY_ENV === "production" ? "PRODUCTION" : "SANDBOX";
 
-const SCOPE_BASE =
-  EBAY_ENV === "production" ? "https://api.ebay.com" : "https://api.sandbox.ebay.com";
-
-export const EBAY_IDENTITY_SCOPE = `${SCOPE_BASE}/oauth/api_scope`;
+export const EBAY_IDENTITY_SCOPE = EBAY_SCOPE_BASE;
 
 export const EBAY_SCOPES = [
   EBAY_IDENTITY_SCOPE,
-  `${SCOPE_BASE}/oauth/api_scope/sell.inventory`,
-  `${SCOPE_BASE}/oauth/api_scope/sell.fulfillment`,
-  `${SCOPE_BASE}/oauth/api_scope/sell.account`,
+  `${EBAY_SCOPE_BASE}/sell.inventory`,
+  `${EBAY_SCOPE_BASE}/sell.fulfillment`,
+  `${EBAY_SCOPE_BASE}/sell.account`,
 ].join(" ");
 
-export function getEbayRedirectUri(): string {
-  const explicit = process.env.EBAY_REDIRECT_URI?.trim();
-  if (explicit) return explicit;
-
-  const base = process.env.NEXT_PUBLIC_APP_URL?.trim();
-  if (!base) throw new Error("Define EBAY_REDIRECT_URI or NEXT_PUBLIC_APP_URL");
-  return `${base.replace(/\/+$/, "")}/api/ebay/callback`;
-}
-
-let client: EbayAuthToken | null = null;
-
-export function getEbayClient(): EbayAuthToken {
-  if (client) return client;
-
+function requireEbayConfig(): { clientId: string; clientSecret: string; ruName: string } {
   if (!EBAY_CLIENT_ID) throw new Error("Missing EBAY_CLIENT_ID");
   if (!EBAY_RUNAME) throw new Error("Missing EBAY_RUNAME");
   if (!EBAY_CLIENT_SECRET) throw new Error("Missing EBAY_CLIENT_SECRET");
 
-  client = new EbayAuthToken({
-    clientId: EBAY_CLIENT_ID,
-    clientSecret: EBAY_CLIENT_SECRET,
-    env: EBAY_OAUTH_ENV,
-    redirectUri: getEbayRedirectUri(),
-  });
-
-  return client;
+  return { clientId: EBAY_CLIENT_ID, clientSecret: EBAY_CLIENT_SECRET, ruName: EBAY_RUNAME };
 }
 
 export function generateConsentUrl(state: string): string {
-  return getEbayClient().generateUserAuthorizationUrl(EBAY_OAUTH_ENV, EBAY_SCOPES.split(" "), {
+  const { clientId, ruName } = requireEbayConfig();
+  const url = new URL(EBAY_AUTHORIZE_URL);
+  url.search = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: ruName,
+    response_type: "code",
+    scope: EBAY_SCOPES,
     state,
-  });
+  }).toString();
+  return url.toString();
 }
 
-export async function exchangeCodeForTokens(code: string): Promise<EbayTokenResponse> {
-  const raw = await getEbayClient().exchangeCodeForAccessToken(EBAY_OAUTH_ENV, code);
-  return JSON.parse(raw) as EbayTokenResponse;
+export interface EbayTokenResponse {
+  access_token?: string;
+  token_type?: string;
+  expires_in?: number;
+  refresh_token?: string;
+  refresh_token_expires_in?: number;
+}
+
+async function requestToken(params: URLSearchParams): Promise<EbayTokenResponse> {
+  const { clientId, clientSecret } = requireEbayConfig();
+  const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  const response = await fetch(EBAY_TOKEN_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${basic}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: params,
+    cache: "no-store",
+  });
+  const body = (await response.json().catch(() => null)) as
+    | (EbayTokenResponse & { error?: string; error_description?: string })
+    | null;
+
+  if (!response.ok || !body) {
+    const detail = body?.error_description ?? body?.error ?? response.statusText;
+    throw new Error(`eBay token request failed (${response.status}): ${detail}`);
+  }
+  return body;
+}
+
+export function exchangeCodeForTokens(code: string): Promise<EbayTokenResponse> {
+  const { ruName } = requireEbayConfig();
+  return requestToken(
+    new URLSearchParams({ grant_type: "authorization_code", code, redirect_uri: ruName })
+  );
 }
 
 export interface EbayIdentity {
   userId: string | null;
   username: string | null;
+}
+
+export interface EbayAccountStatus {
+  sellerRegistrationCompleted: boolean | null;
+  sellingLimit: { quantity: number | null; currency: string | null; value: string | null } | null;
 }
 
 /**
@@ -98,8 +128,6 @@ export interface EbayCredentials {
 
 export type OrgId = string | Types.ObjectId;
 
-const parse = (body: string): EbayTokenResponse => JSON.parse(body) as EbayTokenResponse;
-
 export async function getEbayToken(organizationId: OrgId): Promise<string> {
   await connectDB();
 
@@ -116,8 +144,12 @@ export async function getEbayToken(organizationId: OrgId): Promise<string> {
 
   if (creds.accessExpiresAt > Date.now() + 60_000) return creds.accessToken;
 
-  const t = parse(
-    await getEbayClient().getAccessToken(EBAY_OAUTH_ENV, creds.refreshToken, EBAY_SCOPES.split(" "))
+  const t = await requestToken(
+    new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: creds.refreshToken,
+      scope: EBAY_SCOPES,
+    })
   );
 
   if (!t.access_token || !t.expires_in) {
@@ -150,4 +182,47 @@ export async function ebayFetch(
       Authorization: `Bearer ${token}`,
     },
   });
+}
+
+/**
+ * Makes a lightweight authenticated Seller Account API request. This is used
+ * when the integrations page opens to confirm the saved user token works.
+ */
+export async function getEbayAccountStatus(organizationId: OrgId): Promise<EbayAccountStatus> {
+  const response = await ebayFetch(organizationId, "/sell/account/v1/privilege/");
+  const payload = (await response.json().catch(() => null)) as
+    | {
+        sellerRegistrationCompleted?: boolean;
+        sellingLimit?: { quantity?: number; amount?: { currency?: string; value?: string } };
+        errors?: Array<{ message?: string }>;
+      }
+    | null;
+
+  if (!response.ok) {
+    const detail = payload?.errors?.[0]?.message ?? response.statusText;
+    console.error("[ebay] account check response", {
+      status: response.status,
+      body: payload,
+    });
+    throw new Error(`eBay account check failed (${response.status}): ${detail}`);
+  }
+
+  console.log("[ebay] account check response", {
+    status: response.status,
+    body: payload,
+  });
+
+  return {
+    sellerRegistrationCompleted:
+      typeof payload?.sellerRegistrationCompleted === "boolean"
+        ? payload.sellerRegistrationCompleted
+        : null,
+    sellingLimit: payload?.sellingLimit
+      ? {
+          quantity: typeof payload.sellingLimit.quantity === "number" ? payload.sellingLimit.quantity : null,
+          currency: payload.sellingLimit.amount?.currency ?? null,
+          value: payload.sellingLimit.amount?.value ?? null,
+        }
+      : null,
+  };
 }
