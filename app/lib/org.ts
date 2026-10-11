@@ -6,17 +6,51 @@ import { Membership, Organization } from "@/lib/models/organization";
 import { User } from "@/lib/models/user";
 
 export async function getSessionUserId(): Promise<string | null> {
+  let session;
   try {
-    const session = await auth();
-    const id = session?.user?.id;
-    if (!id) {
-      console.log("[getSessionUserId] No session user id found", session?.user);
-    }
-    return typeof id === "string" && Types.ObjectId.isValid(id) ? id : null;
+    session = await auth();
   } catch (e) {
     console.error("[getSessionUserId] error:", e);
     return null;
   }
+
+  const id = session?.user?.id;
+  if (typeof id === "string" && Types.ObjectId.isValid(id)) {
+    return id;
+  }
+
+  // OAuth logins (and JWTs issued before `session.user.id` was mapped to the DB
+  // user) can carry a provider id — e.g. Google's numeric `sub` — or none at
+  // all. That is not a valid ObjectId, so trusting the token here 401'd org
+  // creation even though the user was authenticated. Fall back to (and lazily
+  // provision) the persisted user keyed by email so every authenticated session
+  // resolves to a real tenant id.
+  const email = session?.user?.email;
+  if (email) {
+    try {
+      await connectDB();
+      const user = await User.findOneAndUpdate(
+        { email: email.toLowerCase() },
+        {
+          $setOnInsert: {
+            name: session?.user?.name ?? "User",
+            email: email.toLowerCase(),
+            emailVerified: true,
+          },
+        },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      )
+        .select("_id")
+        .lean();
+
+      if (user?._id) return user._id.toString();
+    } catch (e) {
+      console.error("[getSessionUserId] email lookup failed:", e);
+    }
+  }
+
+  console.log("[getSessionUserId] No session user id found", session?.user);
+  return null;
 }
 
 export async function getOrgId(): Promise<string | null> {
@@ -51,15 +85,6 @@ async function uniqueSlug(base: string): Promise<string> {
 
   return `${root}-${Date.now().toString(36)}`;
 }
-
-/**
- * Same as getOrgId(), but provisions a personal workspace on first use instead of
- * returning null. Every model in the app is org-scoped, so a seller cannot connect
- * eBay or sync a listing without one; creating it here keeps the connect flow a
- * single click rather than an onboarding step the seller has to complete first.
- *
- * Returns null only when there is no valid session.
- */
 export interface CreateOrganizationParams {
   name: string;
   slug?: string;

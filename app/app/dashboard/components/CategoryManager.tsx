@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Card, EmptyState, PageHeader } from "../components/ui";
-import {
-  Field,
-  FormError,
-  SubmitBar,
-  errorClass,
-  inputClass,
-} from "../components/form";
+import { Card, EmptyState } from "../components/ui";
+import { Button, Field, FormMessage, Select, TextInput } from "../components/form";
 
 export interface CategoryOption {
   id: string;
@@ -25,6 +19,10 @@ export interface CategoryRow extends CategoryOption {
 function childLabel(parent: CategoryOption | undefined): string {
   if (!parent) return "";
   return parent.parentId ? `${parent.name} / ` : "";
+}
+
+function controlClass(error?: string): string {
+  return error ? "border-danger/40 focus:border-danger/60" : "";
 }
 
 export default function CategoryManager({
@@ -66,6 +64,14 @@ export default function CategoryManager({
     return map;
   }
 
+  function resetCreate() {
+    setName("");
+    setSlug("");
+    setParentId("");
+    setError(null);
+    setFieldErrors({});
+  }
+
   async function createCategory(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -87,9 +93,7 @@ export default function CategoryManager({
         return;
       }
 
-      setName("");
-      setSlug("");
-      setParentId("");
+      resetCreate();
       router.refresh();
     } catch {
       setError("Something went wrong. Please try again.");
@@ -170,39 +174,38 @@ export default function CategoryManager({
         </p>
 
         <form onSubmit={createCategory} className="mt-4 space-y-4">
-          <Field label="Name" htmlFor="category-name" required error={fieldErrors.name}>
-            <input
+          <Field label="Name" error={fieldErrors.name}>
+            <TextInput
               id="category-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Kitchen"
               maxLength={80}
               required
-              className={inputClass(errorClass(fieldErrors.name))}
+              className={controlClass(fieldErrors.name)}
             />
           </Field>
 
           <Field
             label="Slug"
-            htmlFor="category-slug"
             hint="Optional. Generated from the name if you leave it blank."
             error={fieldErrors.slug}
           >
-            <input
+            <TextInput
               id="category-slug"
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               placeholder="kitchen"
-              className={inputClass(errorClass(fieldErrors.slug))}
+              className={controlClass(fieldErrors.slug)}
             />
           </Field>
 
-          <Field label="Parent" htmlFor="category-parent" error={fieldErrors.parentId}>
-            <select
+          <Field label="Parent" error={fieldErrors.parentId}>
+            <Select
               id="category-parent"
               value={parentId}
               onChange={(e) => setParentId(e.target.value)}
-              className={inputClass(errorClass(fieldErrors.parentId))}
+              className={controlClass(fieldErrors.parentId)}
             >
               <option value="">No parent (top level)</option>
               {parents.map((parent) => (
@@ -211,23 +214,20 @@ export default function CategoryManager({
                   {parent.name}
                 </option>
               ))}
-            </select>
+            </Select>
           </Field>
 
-          <SubmitBar
-            error={error}
-            saving={saving}
-            submitLabel="Add category"
-            savingLabel="Adding..."
-            onCancelHref="/dashboard/categories"
-            onCancel={() => {
-              setName("");
-              setSlug("");
-              setParentId("");
-              setError(null);
-              setFieldErrors({});
-            }}
-          />
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+            <FormMessage message={error ? { kind: "error", text: error } : null} />
+            <div className="ml-auto flex items-center gap-2">
+              <Button variant="ghost" type="button" onClick={resetCreate} disabled={saving}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={saving}>
+                {saving ? "Adding..." : "Add category"}
+              </Button>
+            </div>
+          </div>
         </form>
       </Card>
 
@@ -258,7 +258,7 @@ export default function CategoryManager({
 
             {deleteError && (
               <div className="px-4 pt-4">
-                <FormError message={deleteError} />
+                <FormMessage message={{ kind: "error", text: deleteError }} />
               </div>
             )}
 
@@ -272,23 +272,23 @@ export default function CategoryManager({
                     {isEditing ? (
                       <form onSubmit={saveEdit} className="space-y-3">
                         <div className="grid gap-3 sm:grid-cols-2">
-                          <Field label="Name" htmlFor={`edit-name-${category.id}`} required error={editFieldErrors.name}>
-                            <input
+                          <Field label="Name" error={editFieldErrors.name}>
+                            <TextInput
                               id={`edit-name-${category.id}`}
                               value={editName}
                               onChange={(e) => setEditName(e.target.value)}
                               maxLength={80}
                               required
-                              className={inputClass(errorClass(editFieldErrors.name))}
+                              className={controlClass(editFieldErrors.name)}
                             />
                           </Field>
 
-                          <Field label="Parent" htmlFor={`edit-parent-${category.id}`} error={editFieldErrors.parentId}>
-                            <select
+                          <Field label="Parent" error={editFieldErrors.parentId}>
+                            <Select
                               id={`edit-parent-${category.id}`}
                               value={editParentId}
                               onChange={(e) => setEditParentId(e.target.value)}
-                              className={inputClass(errorClass(editFieldErrors.parentId))}
+                              className={controlClass(editFieldErrors.parentId)}
                             >
                               <option value="">No parent (top level)</option>
                               {parents
@@ -299,25 +299,25 @@ export default function CategoryManager({
                                     {option.name}
                                   </option>
                                 ))}
-                            </select>
+                            </Select>
                           </Field>
                         </div>
 
+                        <FormMessage
+                          message={editError ? { kind: "error", text: editError } : null}
+                        />
+
                         <div className="flex items-center justify-end gap-2">
-                          <button
+                          <Button
+                            variant="ghost"
                             type="button"
                             onClick={() => setEditingId(null)}
-                            className="rounded-xl px-3.5 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:bg-surface-secondary hover:text-foreground"
                           >
                             Cancel
-                          </button>
-                          <button
-                            type="submit"
-                            disabled={editSaving}
-                            className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
-                          >
+                          </Button>
+                          <Button type="submit" disabled={editSaving}>
                             {editSaving ? "Saving..." : "Save"}
-                          </button>
+                          </Button>
                         </div>
                       </form>
                     ) : (
@@ -332,25 +332,21 @@ export default function CategoryManager({
                           </p>
                         </div>
 
-                        <button
-                          type="button"
-                          onClick={() => startEdit(category)}
-                          className="rounded-lg px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-secondary hover:text-foreground"
-                        >
+                        <Button variant="ghost" type="button" onClick={() => startEdit(category)}>
                           Rename
-                        </button>
+                        </Button>
 
-                        <button
+                        <Button
+                          variant="danger"
                           type="button"
                           disabled={deleteSaving && deletingId === category.id}
                           onClick={() => {
                             setDeletingId(category.id);
                             removeCategory(category);
                           }}
-                          className="rounded-lg px-3 py-1.5 text-xs font-semibold text-danger transition-colors hover:bg-danger-bg disabled:opacity-60"
                         >
                           {deleteSaving && deletingId === category.id ? "Deleting..." : "Delete"}
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </li>
