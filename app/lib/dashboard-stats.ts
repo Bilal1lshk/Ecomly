@@ -156,7 +156,7 @@ export async function getDashboardStats(orgId: string | null): Promise<Dashboard
     }
   }
 
-  return {
+  const result: DashboardStats = {
     currency: dominantCurrency(currencyCounts),
     revenue30d: round(recentOrders.reduce((sum, order) => sum + (order.total ?? 0), 0)),
     orders30d: recentOrders.length,
@@ -171,6 +171,22 @@ export async function getDashboardStats(orgId: string | null): Promise<Dashboard
     ebayConnected: integration?.status === "connected",
     ebayLastSyncedAt: integration?.lastSyncedAt ?? null,
   };
+
+  console.log("=== [lib/dashboard-stats.ts getDashboardStats result] ===", {
+    orgId,
+    integrationDoc: integration,
+    channelStatus: {
+      ebayConnected: result.ebayConnected,
+      ebayLastSyncedAt: result.ebayLastSyncedAt,
+      fulfilled30d: result.fulfilled30d,
+      unitsOnHand: result.unitsOnHand,
+      movements30d: result.movements30d,
+    },
+    ordersCount: recentOrders.length,
+    productCounts: productCounts[0] ?? null,
+  });
+
+  return result;
 }
 
 export { money };

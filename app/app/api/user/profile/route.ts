@@ -33,7 +33,7 @@ export async function PATCH(req: NextRequest) {
     const user = await User.findByIdAndUpdate(
       id,
       { name },
-      { new: true, runValidators: true }
+      { returnDocument: "after", runValidators: true }
     ).select("name");
 
     if (!user) {

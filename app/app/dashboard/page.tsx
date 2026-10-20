@@ -19,6 +19,20 @@ export default async function OverviewPage() {
   const orgId = await getOrgId();
   const stats = await getDashboardStats(orgId);
 
+  console.log("=== [Channel Status / Dashboard Stats] ===", {
+    source: "app/dashboard/page.tsx -> getDashboardStats(orgId)",
+    orgId,
+    channelStatus: {
+      provider: "eBay",
+      connected: stats.ebayConnected,
+      lastSyncedAt: stats.ebayLastSyncedAt,
+      ordersFulfilled30d: stats.fulfilled30d,
+      unitsOnHand: stats.unitsOnHand,
+      stockMovements30d: stats.movements30d,
+    },
+    allStats: stats,
+  });
+
   const hasData = stats.orders30d > 0 || stats.productCount > 0;
 
   const startSteps = [

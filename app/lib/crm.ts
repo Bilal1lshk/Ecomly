@@ -92,7 +92,7 @@ export async function nextOrderNumber(orgId: string): Promise<string> {
   const counter = await Counter.findOneAndUpdate(
     { organizationId: orgId, key: "order" },
     { $inc: { seq: 1 } },
-    { new: true, upsert: true }
+    { returnDocument: "after", upsert: true }
   ).lean();
 
   const seq = counter?.seq ?? 1;

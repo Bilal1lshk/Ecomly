@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
         },
         $unset: { lastError: "", lastSyncedAt: "" },
       },
-      { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
+      { upsert: true, returnDocument: "after", runValidators: true, setDefaultsOnInsert: true }
     );
 
     return clearEbayStateCookie(landing("connected"));
