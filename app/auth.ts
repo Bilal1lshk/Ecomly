@@ -43,9 +43,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
+    /**
+     * Every tenant-scoped query is keyed on `session.user.id`, which downstream
+     * code validates as a Mongo ObjectId (see getSessionUserId). With the
+     * Credentials provider `user.id` is already the Mongo `_id`, but OAuth
+     * providers (we don't use an adapter) hand us the provider's account id,
+     * e.g. Google's numeric `sub`. That is not a valid ObjectId, so the session
+     * looked authenticated while getSessionUserId() returned null and org
+     * creation 401'd. Persist/upsert the DB user and use its `_id` instead.
+     */
+    async jwt({ token, user, account }) {
       if (user) {
-        token.id = user.id;
+        if (account && account.type !== "credentials" && user.email) {
+          await connectDB();
+          const dbUser = await User.findOneAndUpdate(
+            { email: user.email.toLowerCase() },
+            {
+              $setOnInsert: {
+                name: user.name ?? "User",
+                emailVerified: true,
+              },
+            },
+            { upsert: true, new: true, setDefaultsOnInsert: true }
+          );
+          if (dbUser) {
+            const id = dbUser._id.toString();
+            token.id = id;
+            token.sub = id;
+          }
+        } else {
+          token.id = user.id;
+          token.sub = user.id;
+        }
       }
       return token;
     },
@@ -55,8 +84,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
      * getSessionUserId()/getOrgId() and therefore every tenant-scoped query.
      */
     session({ session, token }) {
-      if (token.sub) session.user.id = token.sub;
-      if (token.id && !session.user.id) session.user.id = token.id as string;
+      const id = (token.sub ?? token.id) as string | undefined;
+      if (id) session.user.id = id;
       return session;
     },
   },
