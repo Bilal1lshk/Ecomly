@@ -67,6 +67,7 @@ export interface IOrder {
   paymentStatus?: PaymentStatus;
   paymentMethod?: PaymentMethod;
   channel?: string;
+  buyerEbayUsername?: string;
   items: IOrderItem[];
 
   subtotal?: number;
@@ -112,6 +113,7 @@ const orderSchema = new Schema<IOrder>(
       default: "cod",
     },
     channel: { type: String, default: "manual" },
+    buyerEbayUsername: { type: String, select: false },
 
     items: { type: [orderItemSchema], validate: (v: unknown[]) => v.length > 0 },
 
@@ -152,6 +154,10 @@ const orderSchema = new Schema<IOrder>(
 orderSchema.index({ organizationId: 1, orderNumber: 1 }, { unique: true });
 orderSchema.index({ organizationId: 1, status: 1, placedAt: -1 });
 orderSchema.index({ organizationId: 1, customerId: 1 });
+orderSchema.index(
+  { channel: 1, buyerEbayUsername: 1 },
+  { partialFilterExpression: { buyerEbayUsername: { $exists: true } } }
+);
 orderSchema.index(
   { organizationId: 1, "external.integrationId": 1, "external.externalId": 1 },
   { unique: true, partialFilterExpression: { "external.externalId": { $exists: true } } }

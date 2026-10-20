@@ -501,6 +501,7 @@ export async function syncEbayOrders(
   const operations = importable.map((order) => {
     const pricing = order.pricingSummary;
     const currency = pricing?.total?.currency ?? "USD";
+    const buyerEbayUsername = order.buyerUsername?.toLowerCase();
     const subtotal = order.orderItems.reduce(
       (sum, item) => sum + item.lineTotal.value,
       0
@@ -555,9 +556,11 @@ export async function syncEbayOrders(
             total,
             currency,
             channel: "ebay",
+            ...(buyerEbayUsername ? { buyerEbayUsername } : {}),
             placedAt,
             paidAt: paidDate,
           },
+          ...(buyerEbayUsername ? {} : { $unset: { buyerEbayUsername: "" as const } }),
           $setOnInsert: {
             organizationId: oid,
             orderNumber: `EBY-${order.orderId}`,
