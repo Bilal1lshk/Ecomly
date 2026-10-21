@@ -13,7 +13,7 @@ export async function GET() {
     hasClientId: !!process.env.EBAY_CLIENT_ID,
     hasClientSecret: !!process.env.EBAY_CLIENT_SECRET,
     hasCertId: !!process.env.Cert_ID,
-    hasRuName: !!process.env.EBAY_RUNAME,
+    hasRuName: !!(process.env.EBAY_RUNAME ?? process.env.EBAY_RU_NAME),
   };
   if (!env.hasClientId || !env.hasClientSecret) {
     return NextResponse.json({ ok: false, step: "env", env });

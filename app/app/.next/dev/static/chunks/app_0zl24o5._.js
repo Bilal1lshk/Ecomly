@@ -147,7 +147,6 @@ function ProductImageGenerator() {
         setTimeout(()=>setCopied(false), 2000);
     };
     const canGenerate = !isLoading && name.trim().length > 0;
-    // ── Render ──────────────────────────────────────────────────────────────
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen bg-[#07090f] text-white",
         children: [
@@ -161,14 +160,14 @@ function ProductImageGenerator() {
                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                lineNumber: 136,
+                                lineNumber: 134,
                                 columnNumber: 11
                             }, this),
                             "Powered by Pollinations.ai · Free · No API Key"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                        lineNumber: 135,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -176,7 +175,7 @@ function ProductImageGenerator() {
                         children: "AI Product Image Generator"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                        lineNumber: 139,
+                        lineNumber: 137,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -184,13 +183,13 @@ function ProductImageGenerator() {
                         children: "Describe your product and generate stunning ecommerce photos instantly with Flux AI"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                        lineNumber: 142,
+                        lineNumber: 140,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                lineNumber: 134,
+                lineNumber: 132,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -216,17 +215,17 @@ function ProductImageGenerator() {
                                                 d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 157,
+                                                lineNumber: 155,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                            lineNumber: 156,
+                                            lineNumber: 154,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 155,
+                                        lineNumber: 153,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -236,7 +235,7 @@ function ProductImageGenerator() {
                                                 children: "Product Details"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 159,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -244,19 +243,19 @@ function ProductImageGenerator() {
                                                 children: "Fill in your product info to generate"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 162,
+                                                lineNumber: 160,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 160,
+                                        lineNumber: 158,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                lineNumber: 154,
+                                lineNumber: 152,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,13 +273,13 @@ function ProductImageGenerator() {
                                                         children: "*"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 171,
+                                                        lineNumber: 169,
                                                         columnNumber: 30
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 170,
+                                                lineNumber: 168,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -292,13 +291,13 @@ function ProductImageGenerator() {
                                                 className: "bg-[#151b27] border border-white/[0.07] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/10 transition"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 173,
+                                                lineNumber: 171,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 169,
+                                        lineNumber: 167,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -312,7 +311,7 @@ function ProductImageGenerator() {
                                                         children: "Category"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 186,
+                                                        lineNumber: 184,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -325,7 +324,7 @@ function ProductImageGenerator() {
                                                                 children: "Select…"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 192,
+                                                                lineNumber: 190,
                                                                 columnNumber: 19
                                                             }, this),
                                                             CATEGORIES.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -333,19 +332,19 @@ function ProductImageGenerator() {
                                                                     children: c
                                                                 }, c, false, {
                                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                    lineNumber: 194,
+                                                                    lineNumber: 192,
                                                                     columnNumber: 21
                                                                 }, this))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 185,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 185,
+                                                lineNumber: 183,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -356,7 +355,7 @@ function ProductImageGenerator() {
                                                         children: "Color / Material"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 199,
+                                                        lineNumber: 197,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -367,19 +366,19 @@ function ProductImageGenerator() {
                                                         className: "bg-[#151b27] border border-white/[0.07] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/10 transition"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 200,
+                                                        lineNumber: 198,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 198,
+                                                lineNumber: 196,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 184,
+                                        lineNumber: 182,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -390,7 +389,7 @@ function ProductImageGenerator() {
                                                 children: "Description / Features"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 212,
+                                                lineNumber: 210,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -401,13 +400,13 @@ function ProductImageGenerator() {
                                                 className: "bg-[#151b27] border border-white/[0.07] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/10 transition resize-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 213,
+                                                lineNumber: 211,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 211,
+                                        lineNumber: 209,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -418,7 +417,7 @@ function ProductImageGenerator() {
                                                 children: "Visual Style"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 224,
+                                                lineNumber: 222,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -430,18 +429,18 @@ function ProductImageGenerator() {
                                                         children: s.label
                                                     }, s.value, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 227,
+                                                        lineNumber: 225,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 225,
+                                                lineNumber: 223,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 223,
+                                        lineNumber: 221,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -452,7 +451,7 @@ function ProductImageGenerator() {
                                                 children: "Image Size"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 245,
+                                                lineNumber: 243,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -467,7 +466,7 @@ function ProductImageGenerator() {
                                                                 children: s.label
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 258,
+                                                                lineNumber: 256,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -475,24 +474,24 @@ function ProductImageGenerator() {
                                                                 children: s.sub
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 259,
+                                                                lineNumber: 257,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, s.label, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 248,
+                                                        lineNumber: 246,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 246,
+                                                lineNumber: 244,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 242,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -506,7 +505,7 @@ function ProductImageGenerator() {
                                                         children: "⚙️ Advanced Options"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 272,
+                                                        lineNumber: 270,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -514,13 +513,13 @@ function ProductImageGenerator() {
                                                         children: "▾"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 273,
+                                                        lineNumber: 271,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 267,
+                                                lineNumber: 265,
                                                 columnNumber: 15
                                             }, this),
                                             showAdv && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,7 +533,7 @@ function ProductImageGenerator() {
                                                                 children: "Extra Prompt Details"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 279,
+                                                                lineNumber: 277,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -545,13 +544,13 @@ function ProductImageGenerator() {
                                                                 className: "bg-[#151b27] border border-white/[0.07] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 280,
+                                                                lineNumber: 278,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 278,
+                                                        lineNumber: 276,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -565,7 +564,7 @@ function ProductImageGenerator() {
                                                                         children: "AI Model"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                        lineNumber: 291,
+                                                                        lineNumber: 289,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -577,18 +576,18 @@ function ProductImageGenerator() {
                                                                                 children: m.label
                                                                             }, m.value, false, {
                                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                                lineNumber: 298,
+                                                                                lineNumber: 296,
                                                                                 columnNumber: 27
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                        lineNumber: 292,
+                                                                        lineNumber: 290,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 290,
+                                                                lineNumber: 288,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -599,7 +598,7 @@ function ProductImageGenerator() {
                                                                         children: "Fixed Seed"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                        lineNumber: 303,
+                                                                        lineNumber: 301,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -612,19 +611,19 @@ function ProductImageGenerator() {
                                                                         className: "bg-[#151b27] border border-white/[0.07] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                        lineNumber: 304,
+                                                                        lineNumber: 302,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 302,
+                                                                lineNumber: 300,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 289,
+                                                        lineNumber: 287,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -637,26 +636,26 @@ function ProductImageGenerator() {
                                                                 className: "w-4 h-4 accent-indigo-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 317,
+                                                                lineNumber: 315,
                                                                 columnNumber: 21
                                                             }, this),
                                                             "Auto-enhance prompt with AI"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 316,
+                                                        lineNumber: 314,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 277,
+                                                lineNumber: 275,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 266,
+                                        lineNumber: 264,
                                         columnNumber: 13
                                     }, this),
                                     error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -667,7 +666,7 @@ function ProductImageGenerator() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 331,
+                                        lineNumber: 329,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -680,14 +679,14 @@ function ProductImageGenerator() {
                                                     className: "w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                    lineNumber: 344,
+                                                    lineNumber: 342,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Generating…"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                            lineNumber: 343,
+                                            lineNumber: 341,
                                             columnNumber: 17
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                             children: [
@@ -703,36 +702,36 @@ function ProductImageGenerator() {
                                                         d: "M5 3l14 9-14 9V3z"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 350,
+                                                        lineNumber: 348,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                    lineNumber: 349,
+                                                    lineNumber: 347,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Generate Image"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                            lineNumber: 348,
+                                            lineNumber: 346,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 337,
+                                        lineNumber: 335,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                lineNumber: 166,
+                                lineNumber: 164,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                        lineNumber: 151,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -749,7 +748,7 @@ function ProductImageGenerator() {
                                                 children: "Generated Image"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 366,
+                                                lineNumber: 364,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -757,13 +756,13 @@ function ProductImageGenerator() {
                                                 children: imageUrl ? 'Ready ✓' : isLoading ? 'Generating…' : 'Waiting'
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 367,
+                                                lineNumber: 365,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 365,
+                                        lineNumber: 363,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -789,7 +788,7 @@ function ProductImageGenerator() {
                                                                     rx: "3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                    lineNumber: 386,
+                                                                    lineNumber: 384,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -798,7 +797,7 @@ function ProductImageGenerator() {
                                                                     r: "1.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                    lineNumber: 387,
+                                                                    lineNumber: 385,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -806,18 +805,18 @@ function ProductImageGenerator() {
                                                                     d: "m21 15-5-5L5 21"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                    lineNumber: 388,
+                                                                    lineNumber: 386,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                            lineNumber: 385,
+                                                            lineNumber: 383,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 384,
+                                                        lineNumber: 382,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -828,20 +827,20 @@ function ProductImageGenerator() {
                                                                 children: "Your AI image will appear here"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 392,
+                                                                lineNumber: 390,
                                                                 columnNumber: 21
                                                             }, this),
                                                             "Fill in the form and click Generate"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 391,
+                                                        lineNumber: 389,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 383,
+                                                lineNumber: 381,
                                                 columnNumber: 17
                                             }, this),
                                             isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -851,7 +850,7 @@ function ProductImageGenerator() {
                                                         className: "w-12 h-12 border-[3px] border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 401,
+                                                        lineNumber: 399,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -859,7 +858,7 @@ function ProductImageGenerator() {
                                                         children: "Generating with Flux AI…"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 402,
+                                                        lineNumber: 400,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -867,13 +866,13 @@ function ProductImageGenerator() {
                                                         children: "This takes 10–20 seconds"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 403,
+                                                        lineNumber: 401,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 400,
+                                                lineNumber: 398,
                                                 columnNumber: 17
                                             }, this),
                                             imageUrl && // eslint-disable-next-line @next/next/no-img-element
@@ -885,13 +884,13 @@ function ProductImageGenerator() {
                                                 onError: reset
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 410,
+                                                lineNumber: 408,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 379,
+                                        lineNumber: 377,
                                         columnNumber: 13
                                     }, this),
                                     prompt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -902,7 +901,7 @@ function ProductImageGenerator() {
                                                 children: "Prompt sent to Flux AI"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 423,
+                                                lineNumber: 421,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -910,13 +909,13 @@ function ProductImageGenerator() {
                                                 children: prompt
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 424,
+                                                lineNumber: 422,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 422,
+                                        lineNumber: 420,
                                         columnNumber: 15
                                     }, this),
                                     imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -941,19 +940,19 @@ function ProductImageGenerator() {
                                                             d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                            lineNumber: 439,
+                                                            lineNumber: 437,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 438,
+                                                        lineNumber: 436,
                                                         columnNumber: 19
                                                     }, this),
                                                     "Download"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 431,
+                                                lineNumber: 429,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -975,7 +974,7 @@ function ProductImageGenerator() {
                                                                 rx: "2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 448,
+                                                                lineNumber: 446,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -983,20 +982,20 @@ function ProductImageGenerator() {
                                                                 d: "M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                                lineNumber: 449,
+                                                                lineNumber: 447,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 447,
+                                                        lineNumber: 445,
                                                         columnNumber: 19
                                                     }, this),
                                                     copied ? 'Copied ✓' : 'Copy URL'
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 443,
+                                                lineNumber: 441,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1015,31 +1014,31 @@ function ProductImageGenerator() {
                                                             d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                            lineNumber: 458,
+                                                            lineNumber: 456,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                        lineNumber: 457,
+                                                        lineNumber: 455,
                                                         columnNumber: 19
                                                     }, this),
                                                     "New"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 453,
+                                                lineNumber: 451,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 430,
+                                        lineNumber: 428,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                lineNumber: 362,
+                                lineNumber: 360,
                                 columnNumber: 11
                             }, this),
                             history.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1050,7 +1049,7 @@ function ProductImageGenerator() {
                                         children: "Recent Generations"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 470,
+                                        lineNumber: 468,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1065,41 +1064,41 @@ function ProductImageGenerator() {
                                                     className: "w-full h-full object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                    lineNumber: 480,
+                                                    lineNumber: 478,
                                                     columnNumber: 21
                                                 }, this)
                                             }, i, false, {
                                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                                lineNumber: 473,
+                                                lineNumber: 471,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                        lineNumber: 471,
+                                        lineNumber: 469,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                                lineNumber: 469,
+                                lineNumber: 467,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                        lineNumber: 361,
+                        lineNumber: 359,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ProductImageGenerator.tsx",
-                lineNumber: 148,
+                lineNumber: 146,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/ProductImageGenerator.tsx",
-        lineNumber: 131,
+        lineNumber: 129,
         columnNumber: 5
     }, this);
 }

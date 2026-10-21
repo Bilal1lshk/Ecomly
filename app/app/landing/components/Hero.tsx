@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40">
+    <section id="home" className="relative scroll-mt-24 overflow-hidden pt-32 pb-20 sm:pt-40">
       {/* warm ambient backdrop */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-cover bg-top opacity-[0.35] [mask-image:linear-gradient(to_bottom,black,transparent)]"

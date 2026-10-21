@@ -38,7 +38,7 @@ export async function getSessionUserId(): Promise<string | null> {
             emailVerified: true,
           },
         },
-        { upsert: true, new: true, setDefaultsOnInsert: true }
+        { upsert: true, returnDocument: "after", setDefaultsOnInsert: true }
       )
         .select("_id")
         .lean();

@@ -6,9 +6,9 @@ import { useSession, signOut } from "next-auth/react";
 import ProfileModal from "./ProfileModal";
 
 const LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#workflow", label: "How it works" },
-  { href: "#reviews", label: "Reviews" },
+  { href: "/#features", label: "Features" },
+  { href: "/#workflow", label: "How it works" },
+  { href: "/#reviews", label: "Reviews" },
 ];
 
 function initials(name: string): string {
@@ -67,7 +67,7 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/landing" className="flex items-center gap-2.5">
+        <Link href="/#home" aria-label="Ecomly home" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-[0_6px_18px_-6px_rgba(199,91,58,.7)]">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
@@ -80,6 +80,7 @@ export default function Nav() {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
+          <Link href="/#home" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">Home</Link>
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -90,6 +91,19 @@ export default function Nav() {
             </a>
           ))}
         </div>
+
+        <button
+          type="button"
+          className="ml-auto mr-3 flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground md:hidden"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            {menuOpen ? <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /> : <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />}
+          </svg>
+        </button>
 
         {/* ---------- right side: auth-aware ---------- */}
         <div className="flex items-center gap-3">
@@ -197,6 +211,18 @@ export default function Nav() {
           )}
         </div>
       </nav>
+
+      {menuOpen && (
+        <div id="mobile-navigation" className="border-t border-border bg-background/95 px-6 py-3 backdrop-blur-xl md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col">
+            {[{ href: "/#home", label: "Home" }, ...LINKS].map((link) => (
+              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-secondary hover:text-primary">
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {authenticated && editOpen && (
         <ProfileModal

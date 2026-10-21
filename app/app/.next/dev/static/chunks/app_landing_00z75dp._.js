@@ -909,7 +909,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$landing$2f$components
 ;
 function Hero() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "relative overflow-hidden pt-32 pb-20 sm:pt-40",
+        id: "home",
+        className: "relative scroll-mt-24 overflow-hidden pt-32 pb-20 sm:pt-40",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-cover bg-top opacity-[0.35] [mask-image:linear-gradient(to_bottom,black,transparent)]",
@@ -1606,15 +1607,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 const LINKS = [
     {
-        href: "#features",
+        href: "/#features",
         label: "Features"
     },
     {
-        href: "#workflow",
+        href: "/#workflow",
         label: "How it works"
     },
     {
-        href: "#reviews",
+        href: "/#reviews",
         label: "Reviews"
     }
 ];
@@ -1680,7 +1681,9 @@ function Nav() {
                 className: "mx-auto flex max-w-6xl items-center justify-between px-6 py-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/landing",
+                        href: "/#home",
+                        "aria-label": "Ecomly home",
+                        onClick: ()=>setMenuOpen(false),
                         className: "flex items-center gap-2.5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1727,18 +1730,71 @@ function Nav() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "hidden items-center gap-8 md:flex",
-                        children: LINKS.map((l)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                href: l.href,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: "/#home",
                                 className: "text-sm font-medium text-muted-foreground transition-colors hover:text-primary",
-                                children: l.label
-                            }, l.href, false, {
+                                children: "Home"
+                            }, void 0, false, {
                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                lineNumber: 84,
-                                columnNumber: 13
-                            }, this))
-                    }, void 0, false, {
+                                lineNumber: 83,
+                                columnNumber: 11
+                            }, this),
+                            LINKS.map((l)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                    href: l.href,
+                                    className: "text-sm font-medium text-muted-foreground transition-colors hover:text-primary",
+                                    children: l.label
+                                }, l.href, false, {
+                                    fileName: "[project]/app/landing/components/Nav.tsx",
+                                    lineNumber: 85,
+                                    columnNumber: 13
+                                }, this))
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/landing/components/Nav.tsx",
                         lineNumber: 82,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "button",
+                        className: "ml-auto mr-3 flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground md:hidden",
+                        "aria-label": menuOpen ? "Close navigation menu" : "Open navigation menu",
+                        "aria-expanded": menuOpen,
+                        "aria-controls": "mobile-navigation",
+                        onClick: ()=>setMenuOpen((open)=>!open),
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                            width: "20",
+                            height: "20",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            "aria-hidden": "true",
+                            children: menuOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "m6 6 12 12M18 6 6 18",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round"
+                            }, void 0, false, {
+                                fileName: "[project]/app/landing/components/Nav.tsx",
+                                lineNumber: 104,
+                                columnNumber: 25
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "M4 7h16M4 12h16M4 17h16",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round"
+                            }, void 0, false, {
+                                fileName: "[project]/app/landing/components/Nav.tsx",
+                                lineNumber: 104,
+                                columnNumber: 121
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/landing/components/Nav.tsx",
+                            lineNumber: 103,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/landing/components/Nav.tsx",
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1749,7 +1805,7 @@ function Nav() {
                                 "aria-hidden": "true"
                             }, void 0, false, {
                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                lineNumber: 97,
+                                lineNumber: 111,
                                 columnNumber: 13
                             }, this),
                             !authenticated && status !== "loading" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1760,7 +1816,7 @@ function Nav() {
                                         children: "Log in"
                                     }, void 0, false, {
                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 116,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1769,13 +1825,13 @@ function Nav() {
                                         children: "Start free"
                                     }, void 0, false, {
                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 122,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                lineNumber: 101,
+                                lineNumber: 115,
                                 columnNumber: 13
                             }, this),
                             authenticated && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1798,12 +1854,12 @@ function Nav() {
                                                     className: "h-full w-full object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/landing/components/Nav.tsx",
-                                                    lineNumber: 129,
+                                                    lineNumber: 143,
                                                     columnNumber: 21
                                                 }, this) : initials(displayName)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 140,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1811,7 +1867,7 @@ function Nav() {
                                                 children: displayName
                                             }, void 0, false, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 134,
+                                                lineNumber: 148,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1828,18 +1884,18 @@ function Nav() {
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/landing/components/Nav.tsx",
-                                                    lineNumber: 141,
+                                                    lineNumber: 155,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 151,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                        lineNumber: 119,
+                                        lineNumber: 133,
                                         columnNumber: 15
                                     }, this),
                                     menuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1855,7 +1911,7 @@ function Nav() {
                                                         children: displayName
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                                        lineNumber: 152,
+                                                        lineNumber: 166,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1863,13 +1919,13 @@ function Nav() {
                                                         children: user?.email
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 167,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 151,
+                                                lineNumber: 165,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1891,19 +1947,19 @@ function Nav() {
                                                             strokeLinejoin: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/landing/components/Nav.tsx",
-                                                            lineNumber: 163,
+                                                            lineNumber: 177,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                                        lineNumber: 162,
+                                                        lineNumber: 176,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Go to Dashboard"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 170,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1928,19 +1984,19 @@ function Nav() {
                                                             strokeLinejoin: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/landing/components/Nav.tsx",
-                                                            lineNumber: 178,
+                                                            lineNumber: 192,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                                        lineNumber: 177,
+                                                        lineNumber: 191,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Edit profile"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 182,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1964,37 +2020,37 @@ function Nav() {
                                                             strokeLinejoin: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/landing/components/Nav.tsx",
-                                                            lineNumber: 190,
+                                                            lineNumber: 204,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                                        lineNumber: 189,
+                                                        lineNumber: 203,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Sign out"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                                lineNumber: 183,
+                                                lineNumber: 197,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/landing/components/Nav.tsx",
-                                        lineNumber: 146,
+                                        lineNumber: 160,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/landing/components/Nav.tsx",
-                                lineNumber: 118,
+                                lineNumber: 132,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/landing/components/Nav.tsx",
-                        lineNumber: 95,
+                        lineNumber: 109,
                         columnNumber: 9
                     }, this)
                 ]
@@ -2003,13 +2059,44 @@ function Nav() {
                 lineNumber: 69,
                 columnNumber: 7
             }, this),
+            menuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                id: "mobile-navigation",
+                className: "border-t border-border bg-background/95 px-6 py-3 backdrop-blur-xl md:hidden",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mx-auto flex max-w-6xl flex-col",
+                    children: [
+                        {
+                            href: "/#home",
+                            label: "Home"
+                        },
+                        ...LINKS
+                    ].map((link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: link.href,
+                            onClick: ()=>setMenuOpen(false),
+                            className: "rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-secondary hover:text-primary",
+                            children: link.label
+                        }, link.href, false, {
+                            fileName: "[project]/app/landing/components/Nav.tsx",
+                            lineNumber: 219,
+                            columnNumber: 15
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/app/landing/components/Nav.tsx",
+                    lineNumber: 217,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/landing/components/Nav.tsx",
+                lineNumber: 216,
+                columnNumber: 9
+            }, this),
             authenticated && editOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$landing$2f$components$2f$ProfileModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 onClose: ()=>setEditOpen(false),
                 initialName: displayName,
                 email: user?.email ?? ""
             }, void 0, false, {
                 fileName: "[project]/app/landing/components/Nav.tsx",
-                lineNumber: 202,
+                lineNumber: 228,
                 columnNumber: 9
             }, this)
         ]

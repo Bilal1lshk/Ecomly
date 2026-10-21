@@ -125,8 +125,6 @@ export default function ProductImageGenerator() {
 
   const canGenerate = !isLoading && name.trim().length > 0;
 
-  // ── Render ──────────────────────────────────────────────────────────────
-
   return (
     <div className="min-h-screen bg-[#07090f] text-white">
 

@@ -359,7 +359,7 @@ async function nextOrderNumber(orgId: string, prefix?: string): Promise<string> 
       $inc: { seq: 1 },
       $setOnInsert: { organizationId: orgId, key: "order" },
     },
-    { upsert: true, new: true }
+    { upsert: true, returnDocument: "after" }
   ).lean();
 
   const base = prefix?.trim() ? prefix.trim() : "ORD";

@@ -12,6 +12,7 @@ const PUBLIC_PATHS = [
   "/create-organization",
   "/api/auth",
   "/api/organizations/create",
+  "/api/ebay/account-deletion",
 ];
 
 const API_PATHS = ["/api"];

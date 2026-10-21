@@ -4,6 +4,7 @@ import { Integration, IntegrationSyncLog } from "@/lib/models/integration";
 import { Product } from "@/lib/models/product";
 import { Order } from "@/lib/models/order";
 import { getOrgId } from "@/lib/org";
+import { getEbayAccountStatus, type EbayAccountStatus } from "@/lib/Ebay/ebay";
 import { Card, PageHeader } from "../components/ui";
 import { disconnectEbay } from "./actions";
 import { EbaySyncControl } from "./EbaySyncControl";
@@ -21,9 +22,9 @@ const ERROR_COPY: Record<string, string> = {
     "That eBay authorisation code had already expired or been used. Please start again.",
   incomplete_token: "eBay returned an incomplete token response. Please try again.",
   ebay_not_configured:
-    "eBay OAuth is not configured on this server. Check EBAY_CLIENT_ID, EBAY_CLIENT_SECRET and EBAY_RUNAME.",
+    "eBay OAuth is not configured on this server. Check EBAY_CLIENT_ID, EBAY_CLIENT_SECRET and your sandbox EBAY_RUNAME.",
   redirect_uri_mismatch:
-    "The redirect URI registered with eBay does not match this server. Set EBAY_REDIRECT_URI to the full https://your-app.com/api/ebay/callback that matches the RuName in the eBay developer portal.",
+    "The sandbox RuName does not match the one registered for these eBay keys. Set EBAY_RUNAME to the sandbox RuName from the eBay Developer Portal.",
   token_exchange_failed: "eBay rejected the authorisation. Please try again.",
   save_failed: "The eBay connection could not be saved. Please try again.",
   unauthorized: "Your session expired. Please sign in and try again.",
@@ -85,6 +86,8 @@ export default async function IntegrationsPage({
   }[] = [];
 
   let recordCounts: { products: number; orders: number } = { products: 0, orders: 0 };
+  let accountStatus: EbayAccountStatus | null = null;
+  let accountCheckError: string | null = null;
 
   if (orgId) {
     await connectDB();
@@ -113,10 +116,16 @@ export default async function IntegrationsPage({
           }),
         }))(),
       ]);
+
+      if (integration.status === "connected") {
+        try {
+          accountStatus = await getEbayAccountStatus(orgId);
+        } catch (error) {
+          accountCheckError = error instanceof Error ? error.message : "Could not verify eBay account access.";
+        }
+      }
     }
   }
-  console.log(integration, syncLogs, recordCounts);
-
   const status = integration?.status ?? "disconnected";
   const isConnected = status === "connected";
   const hasError = status === "error";
@@ -176,11 +185,32 @@ export default async function IntegrationsPage({
           <div>
             <h3 className="text-base font-bold text-foreground">eBay</h3>
             <p className="mt-0.5 text-sm text-muted-foreground">
-              OAuth connect, import listings & orders, sync basic stock.
+              Secure OAuth connection, then import listings, orders and stock.
             </p>
             {(seller || syncedAt) && (
               <p className="mt-1 text-xs text-muted-foreground">
                 {[seller && `Seller: ${seller}`, syncedAt].filter(Boolean).join(" · ")}
+              </p>
+            )}
+            {isConnected && (
+              <p
+                className={`mt-1 text-xs font-medium ${
+                  accountCheckError ? "text-danger" : accountStatus ? "text-success" : "text-muted-foreground"
+                }`}
+              >
+                {accountCheckError
+                  ? `Account check failed: ${accountCheckError}`
+                  : accountStatus
+                    ? `Account access verified${
+                        accountStatus.sellerRegistrationCompleted === false
+                          ? " · seller registration incomplete"
+                          : ""
+                      }${
+                        accountStatus.sellingLimit?.quantity != null
+                          ? ` · selling limit: ${accountStatus.sellingLimit.quantity}`
+                          : ""
+                      }`
+                    : "Checking saved eBay access…"}
               </p>
             )}
           </div>

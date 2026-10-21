@@ -10,7 +10,7 @@ import {
   TextArea,
   TextInput,
 } from "../components/form";
-import { Card, EmptyState, StatCard } from "../components/ui";
+import { Card, EmptyState, PrimaryAction, StatCard } from "../components/ui";
 import { useCrm } from "../components/useCrm";
 
 export interface ProductVariant {
@@ -653,6 +653,9 @@ function ProductFormModal({
       onClose={onClose}
       footer={
         <>
+        <PrimaryAction href="/product-visualizer">
+          Create Product with AI
+        </PrimaryAction>
           <Button variant="ghost" onClick={onClose}>
             Cancel
           </Button>
